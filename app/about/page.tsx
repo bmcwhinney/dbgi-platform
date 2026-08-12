@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="prose-page">
-      <span className="listing-eyebrow">About</span>
+      <div className="listing-eyebrow">About</div>
       <h1 className="listing-title serif-text" style={{ marginBottom: 24 }}>
         Business news for the nature isle
       </h1>
