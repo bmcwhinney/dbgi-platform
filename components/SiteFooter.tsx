@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div>
         <div className="site-footer-brand">DBGI</div>
-        <div className="site-footer-tag">Dominica Business Growth &amp; Innovation</div>
+        <div className="site-footer-tag">&copy; 2026 DBGI</div>
       </div>
       <nav className="site-footer-links" aria-label="Footer navigation">
         {SECTORS.map((sector) => (
