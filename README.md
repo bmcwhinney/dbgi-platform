@@ -4,10 +4,20 @@ Dominica Business Growth & Innovation — the DBGI news platform. Built with Nex
 
 ## Stack
 
-- **Next.js 16** (App Router, TypeScript) — every article/section/sector page is statically generated at build time (`● SSG` in the build output), so the live site is pre-rendered HTML served from Vercel's edge CDN. That's what lets it hold up under heavy traffic without any extra infrastructure work.
+- **Next.js 16** (App Router, TypeScript) — every article/section/sector/search/about page is statically generated at build time (`● SSG` / `○ Static` in the build output), so the live site is pre-rendered HTML served from Vercel's edge CDN. That's what lets it hold up under heavy traffic without any extra infrastructure work.
 - **MDX content** — articles live as files in `content/`, no database or CMS. You write, commit, deploy.
 - **Mux** — video playback via `@mux/mux-player-react`. Adaptive bitrate streaming, no third-party branding.
 - **next/image** — automatic image optimization/resizing for every hero image and thumbnail.
+- **next/font** — Newsreader and Public Sans are self-hosted at build time, no external font CDN request on page load.
+- **Structured data + RSS** — Organization/WebSite JSON-LD sitewide, NewsArticle JSON-LD per story, and a full RSS feed at `/feed.xml`.
+
+## Features
+
+- **Search** (`/search`) — instant client-side search over every article's title, standfirst, and eyebrow.
+- **Sectors hub** (`/sectors`) — a real directory page listing all five sectors with live story counts, instead of an empty listing.
+- **Full site menu** — the hamburger opens a drawer with every section, sector, search, and About, for both mobile and as a comprehensive site map.
+- **Related stories** — every article ends with "More in [section]," prioritizing same-sector, then same-section, then everything else.
+- **Featured flag** — set `featured: true` in an article's frontmatter to pin it to the homepage lead or mid slot ahead of recency.
 
 ## Running locally
 
@@ -78,11 +88,13 @@ Every push to `main` triggers a new production build; every article is pre-rende
 ## Project structure
 
 ```
-app/                    routes (homepage, [section], [section]/[slug], sector/[sector])
-components/             SiteHeader, SiteFooter, ArticleCards, OpinionBox, VideoEmbed, icons
+app/                    routes (homepage, [section] incl. sectors hub, [section]/[slug],
+                        sector/[sector], search, about, feed.xml, sitemap, robots, error)
+components/             SiteHeader (+ nav drawer), SiteFooter, ArticleCards, OpinionBox,
+                        VideoEmbed, SearchClient, JsonLd, icons
 content/articles/       article MDX files (source of truth for all editorial content)
 content/viewpoints/     short opinion-box quotes
-lib/                    content loading/query helpers (articles.ts, viewpoints.ts)
+lib/                    content loading/query helpers (articles.ts, viewpoints.ts, urls.ts)
 types/content.ts        section/sector definitions and TypeScript types
 public/images/          brand art, hero images, favicons
 ```

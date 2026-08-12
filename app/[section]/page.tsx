@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { SECTIONS, sectionLabel, type SectionSlug } from "@/types/content";
-import { getArticlesBySection } from "@/lib/articles";
+import Link from "next/link";
+import { SECTIONS, SECTORS, sectionLabel, type SectionSlug } from "@/types/content";
+import { getArticlesBySection, getArticlesBySector } from "@/lib/articles";
 import { ListingCard } from "@/components/ArticleCards";
 import { SectorStrip } from "@/components/SectorStrip";
 
@@ -15,7 +16,43 @@ export async function generateMetadata({
   params: Promise<{ section: string }>;
 }): Promise<Metadata> {
   const { section } = await params;
-  return { title: sectionLabel(section) };
+  const label = sectionLabel(section);
+  const description =
+    section === "sectors"
+      ? "Browse DBGI coverage by industry: clean energy, agribusiness, tourism, tech & digital, and the blue economy."
+      : `The latest ${label.toLowerCase()} coverage from DBGI, Dominica's business and innovation platform.`;
+
+  return {
+    title: label,
+    description,
+    alternates: { canonical: `/${section}` },
+    openGraph: { title: `${label} | DBGI Platform`, description },
+  };
+}
+
+function SectorHub() {
+  return (
+    <>
+      <div className="listing-header">
+        <div className="listing-eyebrow">Directory</div>
+        <h1 className="listing-title serif-text">Sectors</h1>
+      </div>
+
+      <div className="sector-hub-grid">
+        {SECTORS.map((sector) => {
+          const count = getArticlesBySector(sector.slug).length;
+          return (
+            <Link key={sector.slug} href={`/sector/${sector.slug}`} className="sector-hub-card">
+              <div className="sector-hub-title serif-text">{sector.label}</div>
+              <div className="sector-hub-count">
+                {count} {count === 1 ? "story" : "stories"}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </>
+  );
 }
 
 export default async function SectionPage({
@@ -26,6 +63,10 @@ export default async function SectionPage({
   const { section } = await params;
   const isValid = SECTIONS.some((s) => s.slug === section);
   if (!isValid) notFound();
+
+  if (section === "sectors") {
+    return <SectorHub />;
+  }
 
   const articles = getArticlesBySection(section as SectionSlug);
   const label = sectionLabel(section);

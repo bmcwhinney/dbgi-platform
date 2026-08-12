@@ -2,12 +2,15 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllArticles, getArticle } from "@/lib/articles";
+import { getAllArticles, getArticle, getRelatedArticles } from "@/lib/articles";
 import { sectionLabel } from "@/types/content";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { mdxComponents } from "@/lib/mdx-components";
 import { ClockIcon } from "@/components/icons";
 import { SectorStrip } from "@/components/SectorStrip";
+import { ListingCard } from "@/components/ArticleCards";
+import { ArticleJsonLd } from "@/components/JsonLd";
+import { articleHref } from "@/lib/urls";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({
@@ -28,6 +31,7 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.standfirst,
+    alternates: { canonical: articleHref(article) },
     openGraph: {
       title: article.title,
       description: article.standfirst,
@@ -47,6 +51,8 @@ export default async function ArticlePage({
   const article = getArticle(section, slug);
   if (!article) notFound();
 
+  const related = getRelatedArticles(article);
+
   const dateLabel = new Date(article.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -55,6 +61,7 @@ export default async function ArticlePage({
 
   return (
     <article>
+      <ArticleJsonLd article={article} />
       <div className="article-hero">
         <span className="eyebrow">
           {article.eyebrow} &middot; {sectionLabel(article.section)}
@@ -103,6 +110,17 @@ export default async function ArticlePage({
       <div className="article-body">
         <MDXRemote source={article.content} components={mdxComponents} />
       </div>
+
+      {related.length > 0 && (
+        <section className="related-section" aria-label="Related stories">
+          <div className="related-section-label">More in {sectionLabel(article.section)}</div>
+          <div className="related-grid">
+            {related.map((r) => (
+              <ListingCard key={r.slug} article={r} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <SectorStrip active={article.sector} />
     </article>

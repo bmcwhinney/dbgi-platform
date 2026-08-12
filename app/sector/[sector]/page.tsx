@@ -15,7 +15,15 @@ export async function generateMetadata({
   params: Promise<{ sector: string }>;
 }): Promise<Metadata> {
   const { sector } = await params;
-  return { title: sectorLabel(sector) };
+  const label = sectorLabel(sector);
+  const description = `DBGI's ${label.toLowerCase()} coverage: the founders, capital, and policy shaping this sector in Dominica.`;
+
+  return {
+    title: label,
+    description,
+    alternates: { canonical: `/sector/${sector}` },
+    openGraph: { title: `${label} | DBGI Platform`, description },
+  };
 }
 
 export default async function SectorPage({

@@ -52,3 +52,71 @@ export function getArticle(section: string, slug: string): Article | undefined {
 export function getArticleBySlug(slug: string): Article | undefined {
   return loadArticles().find((a) => a.slug === slug);
 }
+
+export interface HomepageLayout {
+  lead?: Article;
+  mid?: Article;
+  side: Article[];
+  bottom: Article[];
+}
+
+/**
+ * Featured articles are pinned to the lead/mid slots ahead of recency;
+ * everything else falls back to newest-first.
+ */
+export function getHomepageLayout(): HomepageLayout {
+  const sorted = loadArticles();
+
+  const lead = sorted.find((a) => a.featured) ?? sorted[0];
+  const afterLead = sorted.filter((a) => a.slug !== lead?.slug);
+
+  const mid = afterLead.find((a) => a.featured) ?? afterLead[0];
+  const rest = afterLead.filter((a) => a.slug !== mid?.slug);
+
+  return {
+    lead,
+    mid,
+    side: rest.slice(0, 4),
+    bottom: rest.slice(4, 7),
+  };
+}
+
+export function getRelatedArticles(article: Article, limit = 3): Article[] {
+  const all = loadArticles().filter((a) => a.slug !== article.slug);
+
+  const bySector = article.sector
+    ? all.filter((a) => a.sector === article.sector)
+    : [];
+  const bySection = all.filter(
+    (a) => a.section === article.section && !bySector.includes(a)
+  );
+  const rest = all.filter((a) => !bySector.includes(a) && !bySection.includes(a));
+
+  return [...bySector, ...bySection, ...rest].slice(0, limit);
+}
+
+export interface SearchableArticle {
+  title: string;
+  standfirst: string;
+  eyebrow: string;
+  section: string;
+  sector?: string;
+  slug: string;
+  date: string;
+  heroImage: string;
+  heroImageAlt: string;
+}
+
+export function getSearchIndex(): SearchableArticle[] {
+  return loadArticles().map((a) => ({
+    title: a.title,
+    standfirst: a.standfirst,
+    eyebrow: a.eyebrow,
+    section: a.section,
+    sector: a.sector,
+    slug: a.slug,
+    date: a.date,
+    heroImage: a.heroImage,
+    heroImageAlt: a.heroImageAlt,
+  }));
+}

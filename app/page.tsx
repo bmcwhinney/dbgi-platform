@@ -1,19 +1,18 @@
-import { getAllArticles } from "@/lib/articles";
+import { getHomepageLayout } from "@/lib/articles";
 import { getLatestViewpoint } from "@/lib/viewpoints";
 import { LeadCard, MidCard, SideItem, BottomCard } from "@/components/ArticleCards";
 import { OpinionBox } from "@/components/OpinionBox";
 import { SectorStrip } from "@/components/SectorStrip";
+import { WebsiteJsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
-  const articles = getAllArticles();
+  const { lead, mid, side, bottom } = getHomepageLayout();
   const viewpoint = getLatestViewpoint();
-
-  const [lead, mid, ...rest] = articles;
-  const sideItems = rest.slice(0, 4);
-  const bottomStories = rest.slice(4, 7);
 
   return (
     <>
+      <WebsiteJsonLd />
+
       <main className="main-grid">
         {lead && <LeadCard article={lead} />}
 
@@ -24,7 +23,7 @@ export default function HomePage() {
 
         <aside className="side-col">
           <h3 className="side-label">Also this week</h3>
-          {sideItems.map((article) => (
+          {side.map((article) => (
             <SideItem key={article.slug} article={article} />
           ))}
         </aside>
@@ -33,7 +32,7 @@ export default function HomePage() {
       <SectorStrip />
 
       <footer className="bottom-grid">
-        {bottomStories.map((article) => (
+        {bottom.map((article) => (
           <BottomCard key={article.slug} article={article} />
         ))}
       </footer>

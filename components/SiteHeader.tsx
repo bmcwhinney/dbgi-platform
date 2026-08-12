@@ -1,31 +1,55 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MenuIcon, SearchIcon } from "./icons";
-import { SECTIONS } from "@/types/content";
+import { MenuIcon, SearchIcon, CloseIcon } from "./icons";
+import { SECTIONS, SECTORS } from "@/types/content";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDrawerOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
 
   return (
     <>
       <header className="top-bar">
         <div className="top-left">
-          <button className="menu-icon" aria-label="Open menu">
+          <button
+            className="menu-icon"
+            aria-label="Open menu"
+            aria-expanded={drawerOpen}
+            onClick={() => setDrawerOpen(true)}
+          >
             <MenuIcon />
           </button>
           <nav className="top-links" aria-label="Secondary navigation">
-            <Link href="/news">News</Link>
-            <Link href="/opportunities">Opportunities</Link>
-            <Link href="/founders">Founders</Link>
+            <Link href="/about" className="utility-link">
+              About
+            </Link>
           </nav>
         </div>
         <div className="top-right">
-          <button className="top-icon" aria-label="Search" style={{ marginRight: 4 }}>
+          <Link href="/search" className="top-icon" aria-label="Search" style={{ marginRight: 4 }}>
             <SearchIcon />
-          </button>
+          </Link>
           <button className="login-text">Log in</button>
           <button className="subscribe-btn">Subscribe</button>
         </div>
@@ -73,6 +97,56 @@ export function SiteHeader() {
           </Link>
         ))}
       </nav>
+
+      {drawerOpen && (
+        <>
+          <div className="nav-drawer-overlay" onClick={() => setDrawerOpen(false)} />
+          <div className="nav-drawer" role="dialog" aria-modal="true" aria-label="Site menu">
+            <div className="nav-drawer-header">
+              <span className="nav-drawer-logo">DBGI</span>
+              <button
+                className="nav-drawer-close"
+                aria-label="Close menu"
+                onClick={() => setDrawerOpen(false)}
+              >
+                <CloseIcon />
+              </button>
+            </div>
+
+            <div className="nav-drawer-group-label">Sections</div>
+            <nav>
+              {SECTIONS.map((section) => (
+                <Link key={section.slug} href={`/${section.slug}`} className="nav-drawer-link">
+                  {section.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="nav-drawer-group-label">Sectors</div>
+            <nav>
+              {SECTORS.map((sector) => (
+                <Link
+                  key={sector.slug}
+                  href={`/sector/${sector.slug}`}
+                  className="nav-drawer-link small"
+                >
+                  {sector.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="nav-drawer-group-label">More</div>
+            <nav>
+              <Link href="/search" className="nav-drawer-link small">
+                Search
+              </Link>
+              <Link href="/about" className="nav-drawer-link small">
+                About DBGI
+              </Link>
+            </nav>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -14,6 +14,8 @@ export function SiteFooter() {
             {sector.label}
           </Link>
         ))}
+        <Link href="/about">About</Link>
+        <Link href="/feed.xml">RSS</Link>
       </nav>
     </footer>
   );
