@@ -800,10 +800,11 @@ a.eyebrow:hover {
 
 .site-footer-brand {
   font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--paper-refined);
+  letter-spacing: 0.15em;
+  color: var(--nature-green);
+  line-height: 1;
 }
 
 .site-footer-tag {
