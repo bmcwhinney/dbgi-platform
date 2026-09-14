@@ -833,27 +833,12 @@ a.eyebrow:hover {
 .site-footer {
   background: var(--forest-core);
   color: var(--paper-refined);
-  padding: 48px 32px;
+  padding: 40px 32px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 24px;
-}
-
-.site-footer-brand {
-  font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  color: var(--nature-green);
-  line-height: 1;
-}
-
-.site-footer-tag {
-  font-size: 0.8rem;
-  color: #8C9990;
-  margin-top: 4px;
 }
 
 .site-footer-links {
