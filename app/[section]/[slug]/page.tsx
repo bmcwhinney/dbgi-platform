@@ -3,14 +3,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllArticles, getArticle, getRelatedArticles } from "@/lib/articles";
-import { sectionLabel } from "@/types/content";
+import { sectionLabel, sectorLabel } from "@/types/content";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { mdxComponents } from "@/lib/mdx-components";
 import { ClockIcon } from "@/components/icons";
 import { SectorStrip } from "@/components/SectorStrip";
 import { ListingCard } from "@/components/ArticleCards";
 import { ArticleJsonLd } from "@/components/JsonLd";
-import { articleHref } from "@/lib/urls";
+import { ShareBar } from "@/components/ShareBar";
+import { articleHref, absoluteArticleUrl } from "@/lib/urls";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({
@@ -32,12 +33,23 @@ export async function generateMetadata({
     title: article.title,
     description: article.standfirst,
     alternates: { canonical: articleHref(article) },
+    authors: [{ name: article.author }],
     openGraph: {
       title: article.title,
       description: article.standfirst,
-      images: [{ url: article.heroImage }],
+      images: [{ url: article.heroImage, alt: article.heroImageAlt }],
       type: "article",
       publishedTime: article.date,
+      authors: [article.author],
+      section: sectionLabel(article.section),
+      tags: article.sector ? [sectorLabel(article.sector)] : undefined,
+      url: articleHref(article),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.standfirst,
+      images: [article.heroImage],
     },
   };
 }
@@ -87,6 +99,8 @@ export default async function ArticlePage({
             <span>{article.readTime} read</span>
           </div>
         </div>
+
+        <ShareBar url={absoluteArticleUrl(article)} title={article.title} />
 
         <div className="article-media">
           {article.video ? (

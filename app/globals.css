@@ -719,6 +719,49 @@ a.eyebrow:hover {
   letter-spacing: 0.03em;
 }
 
+.share-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.share-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 4px;
+}
+
+.share-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--paper-refined);
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.share-icon:hover {
+  border-color: var(--volcanic-coral);
+  background: var(--volcanic-coral);
+  color: #ffffff;
+}
+
+.share-copied {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--nature-green);
+}
+
 .article-media {
   width: 100%;
   border-radius: 2px;
