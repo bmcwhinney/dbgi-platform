@@ -670,6 +670,13 @@ a.eyebrow:hover {
   letter-spacing: -0.01em;
 }
 
+.listing-card-standfirst {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
 .listing-empty {
   padding: 64px 32px;
   text-align: center;

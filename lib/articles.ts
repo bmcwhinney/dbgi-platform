@@ -98,8 +98,8 @@ export interface SearchableArticle {
   standfirst: string;
   eyebrow: string;
   slug: string;
-  heroImage: string;
-  heroImageAlt: string;
+  heroImage?: string;
+  heroImageAlt?: string;
 }
 
 export function getSearchIndex(): SearchableArticle[] {

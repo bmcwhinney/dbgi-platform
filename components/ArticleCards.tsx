@@ -16,16 +16,18 @@ export function LeadCard({ article }: { article: Article }) {
   const href = articleHref(article);
   return (
     <article className="lead-col card-link-target">
-      <div className="mid-image-placeholder">
-        {article.video && <PlayBadge />}
-        <Image
-          src={article.heroImage}
-          alt={article.heroImageAlt}
-          width={800}
-          height={520}
-          priority
-        />
-      </div>
+      {article.heroImage && (
+        <div className="mid-image-placeholder">
+          {article.video && <PlayBadge />}
+          <Image
+            src={article.heroImage}
+            alt={article.heroImageAlt ?? ""}
+            width={800}
+            height={520}
+            priority
+          />
+        </div>
+      )}
       <span className="eyebrow">{articleEyebrow(article)}</span>
       <h1 className="lead-headline">
         <Link href={href} className="stretched-link">
@@ -45,10 +47,12 @@ export function MidCard({ article }: { article: Article }) {
   const href = articleHref(article);
   return (
     <div className="mid-story-block card-link-target">
-      <div className="mid-image-placeholder">
-        {article.video && <PlayBadge />}
-        <Image src={article.heroImage} alt={article.heroImageAlt} width={640} height={420} />
-      </div>
+      {article.heroImage && (
+        <div className="mid-image-placeholder">
+          {article.video && <PlayBadge />}
+          <Image src={article.heroImage} alt={article.heroImageAlt ?? ""} width={640} height={420} />
+        </div>
+      )}
       <span className="eyebrow">{articleEyebrow(article)}</span>
       <h2 className="mid-headline serif-text">
         <Link href={href} className="stretched-link">
@@ -101,12 +105,15 @@ export function BottomCard({ article }: { article: Article }) {
 export function ListingCard({ article }: { article: Article }) {
   return (
     <Link href={articleHref(article)} className="listing-card">
-      <div className="mid-image-placeholder">
-        {article.video && <PlayBadge />}
-        <Image src={article.heroImage} alt={article.heroImageAlt} width={640} height={420} />
-      </div>
+      {article.heroImage && (
+        <div className="mid-image-placeholder">
+          {article.video && <PlayBadge />}
+          <Image src={article.heroImage} alt={article.heroImageAlt ?? ""} width={640} height={420} />
+        </div>
+      )}
       <span className="eyebrow">{articleEyebrow(article)}</span>
       <h3 className="listing-card-headline serif-text">{article.title}</h3>
+      {!article.heroImage && <p className="listing-card-standfirst">{article.standfirst}</p>}
       <div className="read-meta">
         <ClockIcon />
         <span>{article.readTime} read</span>

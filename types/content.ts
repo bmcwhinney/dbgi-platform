@@ -10,7 +10,7 @@ export const FORMATS = [
   { slug: "news", label: "News", series: "News" },
   { slug: "analysis", label: "Analysis", series: "Analysis" },
   { slug: "profile", label: "Profile", series: "People" },
-  { slug: "briefing", label: "Sector briefing", series: "Briefings" },
+  { slug: "briefing", label: "Briefing", series: "Briefings" },
   { slug: "opinion", label: "Opinion", series: "Opinion" },
 ] as const;
 
@@ -78,8 +78,8 @@ export interface ArticleFrontmatter {
   date: string;
   updated?: string;
   readTime?: string;
-  heroImage: string;
-  heroImageAlt: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   imageCredit?: string;
   sources?: ArticleSource[];
   disclosure?: string;

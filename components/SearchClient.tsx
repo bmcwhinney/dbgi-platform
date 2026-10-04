@@ -47,14 +47,16 @@ export function SearchClient({ articles }: { articles: SearchableArticle[] }) {
         <div className="listing-grid">
           {results.map((article) => (
             <Link key={article.slug} href={articleHref(article)} className="listing-card">
-              <div className="mid-image-placeholder">
-                <Image
-                  src={article.heroImage}
-                  alt={article.heroImageAlt}
-                  width={640}
-                  height={420}
-                />
-              </div>
+              {article.heroImage && (
+                <div className="mid-image-placeholder">
+                  <Image
+                    src={article.heroImage}
+                    alt={article.heroImageAlt ?? ""}
+                    width={640}
+                    height={420}
+                  />
+                </div>
+              )}
               <span className="eyebrow">{article.eyebrow}</span>
               <h3 className="listing-card-headline serif-text">{article.title}</h3>
             </Link>

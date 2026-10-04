@@ -48,7 +48,7 @@ export function ArticleJsonLd({ article }: { article: Article }) {
     "@type": "NewsArticle",
     headline: article.title,
     description: article.standfirst,
-    image: [`${SITE_URL}${article.heroImage}`],
+    ...(article.heroImage && { image: [`${SITE_URL}${article.heroImage}`] }),
     datePublished: article.date,
     dateModified: article.updated ?? article.date,
     author: {

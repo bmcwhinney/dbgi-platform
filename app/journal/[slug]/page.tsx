@@ -35,7 +35,9 @@ export async function generateMetadata({
     openGraph: {
       title: article.title,
       description: article.standfirst,
-      images: [{ url: article.heroImage, alt: article.heroImageAlt }],
+      ...(article.heroImage && {
+        images: [{ url: article.heroImage, alt: article.heroImageAlt }],
+      }),
       type: "article",
       publishedTime: article.date,
       modifiedTime: article.updated,
@@ -48,7 +50,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: article.title,
       description: article.standfirst,
-      images: [article.heroImage],
+      ...(article.heroImage && { images: [article.heroImage] }),
     },
   };
 }
@@ -106,23 +108,27 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         <ShareBar url={absoluteArticleUrl(article)} title={article.title} />
 
-        <div className="article-media">
-          {article.video ? (
+        {article.video ? (
+          <div className="article-media">
             <VideoEmbed
               playbackId={article.video.playbackId}
               title={article.video.title ?? article.title}
               poster={article.heroImage}
             />
-          ) : (
-            <Image
-              src={article.heroImage}
-              alt={article.heroImageAlt}
-              width={1400}
-              height={900}
-              priority
-            />
-          )}
-        </div>
+          </div>
+        ) : (
+          article.heroImage && (
+            <div className="article-media">
+              <Image
+                src={article.heroImage}
+                alt={article.heroImageAlt ?? ""}
+                width={1400}
+                height={900}
+                priority
+              />
+            </div>
+          )
+        )}
         {article.imageCredit && <p className="article-credit">{article.imageCredit}</p>}
       </div>
 

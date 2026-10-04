@@ -56,7 +56,7 @@ authorRole: "Optional role/title"
 authorImage: "/images/your-photo.png"   # optional
 date: "2026-08-12"
 updated: "2026-08-20"     # optional, shown in the byline
-heroImage: "/images/your-hero.jpg"
+heroImage: "/images/your-hero.jpg"   # optional; without it the story runs as a text card
 heroImageAlt: "Describe the image for accessibility"
 imageCredit: "Photo: name"              # optional
 sources:                                # optional, listed under the article
@@ -94,7 +94,7 @@ The demo article `content/articles/inside-the-founder-house-video-tour.mdx` uses
 
 ## Placeholder content
 
-Nine of the eleven articles in `content/articles/` are placeholder copy written to fill the layout, with invented figures and no sources. The two with real sourcing are the airport runway piece and the Rosalie Bay piece. The specification asks that claims be attributable before reuse, so the placeholders should be replaced or sourced before launch.
+Seven of the fifteen articles in `content/articles/` are still placeholder copy with invented figures and no sources: the business registrations, founder grant fund, eco-luxury resorts, accelerator seed rounds, resilience bonds, financial services and office-hours pieces. Every other article lists its sources. The specification asks that claims be attributable before reuse, so the placeholders should be replaced or sourced before launch.
 
 ## Deploying
 
