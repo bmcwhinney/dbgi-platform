@@ -1,6 +1,19 @@
 # DBGI Platform
 
-Dominica Business Growth & Innovation — the DBGI news platform. Built with Next.js (App Router), styled to the original "Pentagram High-Tension Editorial" design system, with MDX-based articles and Mux-powered video.
+DBGI (Dominica Business Growth & Innovation) is a business publication and intelligence platform focused on Dominica, with a commercial division, Fieldwork Dominica. This repo is the website: Next.js (App Router), MDX articles, Mux video.
+
+## Site structure
+
+| Destination | Route | What it holds |
+|---|---|---|
+| Journal | `/journal`, `/journal/[slug]`, `/journal/format/[format]` | Every article. Formats: news, analysis, profile (the People series), briefing, opinion. |
+| Sectors | `/sectors`, `/sectors/[sector]` | The five covered sectors, each with its scope, the business questions pursued and its linked reporting. |
+| Opportunities | `/opportunities` | The evidence standard and publication stages for opportunity briefs. No brief is published yet. |
+| Fieldwork | `/fieldwork`, `/fieldwork/concepts/morne` | The commercial division: services, ways to engage, concepts, enquiry form. |
+
+Fieldwork pages carry their own identity (sage accent, brush wordmark) so commissioned work is never mistaken for editorial. Formats and sectors are defined in `types/content.ts`. Old section URLs (`/news/...`, `/founders/...`, `/sector/...`) redirect from `next.config.mjs`.
+
+**Not wired up yet:** the Fieldwork enquiry form has no backend. It validates, sends nothing, and tells the visitor so (`components/EnquiryForm.tsx`). There is no newsletter sign-up.
 
 ## Stack
 
@@ -13,11 +26,10 @@ Dominica Business Growth & Innovation — the DBGI news platform. Built with Nex
 
 ## Features
 
-- **Search** (`/search`) — instant client-side search over every article's title, standfirst, and eyebrow.
-- **Sectors hub** (`/sectors`) — a real directory page listing all five sectors with live story counts, instead of an empty listing.
-- **Full site menu** — the hamburger opens a drawer with every section, sector, search, and About, for both mobile and as a comprehensive site map.
-- **Related stories** — every article ends with "More in [section]," prioritizing same-sector, then same-section, then everything else.
-- **Featured flag** — set `featured: true` in an article's frontmatter to pin it to the homepage lead or mid slot ahead of recency.
+- **Search** (`/search`): instant client-side search over every article's title, standfirst and label.
+- **Full site menu**: the hamburger opens a drawer with the Journal, sectors, Fieldwork, search and About.
+- **Related stories**: every article ends with more from the Journal, prioritising the same sector, then the same format.
+- **Sharing**: share bar plus per-article Open Graph and Twitter cards.
 
 ## Running locally
 
@@ -35,16 +47,23 @@ Add a new `.mdx` file to `content/articles/`. The filename (minus `.mdx`) become
 ```mdx
 ---
 title: "Your headline here"
-section: "news"          # news | opportunities | founders | sectors | island-life | ideation-hub
-sector: "clean-energy"    # optional: clean-energy | agribusiness | tourism | tech-digital | blue-economy
-eyebrow: "Clean energy"
+format: "news"            # news | analysis | profile | briefing | opinion
+sector: "energy"          # optional primary sector: food-and-agriculture | natural-ingredients |
+                          # tourism-and-hospitality | energy | infrastructure-and-connectivity
 standfirst: "One or two sentence summary shown on cards and at the top of the article."
 author: "Your name"
 authorRole: "Optional role/title"
 authorImage: "/images/your-photo.png"   # optional
 date: "2026-08-12"
+updated: "2026-08-20"     # optional, shown in the byline
 heroImage: "/images/your-hero.jpg"
 heroImageAlt: "Describe the image for accessibility"
+imageCredit: "Photo: name"              # optional
+sources:                                # optional, listed under the article
+  - label: "Who said or published it"
+    url: "https://example.com"
+disclosure: "Any Fieldwork, client or sponsor interest in this story."   # optional
+featured: true            # optional, pins it to the homepage lead or mid slot
 ---
 
 Article body goes here, written in Markdown/MDX. Use `##` for subheadings,
@@ -53,7 +72,9 @@ Article body goes here, written in Markdown/MDX. Use `##` for subheadings,
 
 Put images in `public/images/`. Reference them from frontmatter/body as `/images/filename.jpg`.
 
-The homepage automatically pulls the most recent article as the lead story, the second-most-recent as the mid story, the next four into "Also this week," and the next three into the bottom grid — no manual curation needed. Every article is also reachable from its section page (`/news`, `/founders`, etc.) and, if it has a `sector`, from `/sector/[sector]`.
+An article is written once and appears wherever it belongs: the homepage, its format series in the Journal, and its sector page. The label on cards is the sector (or the format when there is no sector; opinion is always labelled Opinion).
+
+The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. The box under the mid story is the Fieldwork feature.
 
 ## Publishing a video article
 
@@ -73,13 +94,13 @@ The demo article `content/articles/inside-the-founder-house-video-tour.mdx` uses
 
 ## Placeholder content
 
-The 10 seed articles and the "Anya Pierre" viewpoint in `content/` are placeholder copy carried over from the original mockup, written to demonstrate every layout slot (lead, mid, side rail, bottom grid, section/sector listings, video). Replace them with real reporting before launch — delete or edit the files in `content/articles/` and `content/viewpoints/` directly.
+Nine of the eleven articles in `content/articles/` are placeholder copy written to fill the layout, with invented figures and no sources. The two with real sourcing are the airport runway piece and the Rosalie Bay piece. The specification asks that claims be attributable before reuse, so the placeholders should be replaced or sourced before launch.
 
 ## Deploying
 
 The site is built for [Vercel](https://vercel.com):
 
-1. Push this repo to GitHub (already at `bmcwhinney/DBGI`).
+1. Push this repo to GitHub (`bmcwhinney/dbgi-platform`).
 2. Import the repo in Vercel. No environment variables are required for the current MDX + Mux-playback-ID setup.
 3. Point the `dominicabgi.site` domain at the Vercel project.
 
@@ -88,13 +109,12 @@ Every push to `main` triggers a new production build; every article is pre-rende
 ## Project structure
 
 ```
-app/                    routes (homepage, [section] incl. sectors hub, [section]/[slug],
-                        sector/[sector], search, about, feed.xml, sitemap, robots, error)
-components/             SiteHeader (+ nav drawer), SiteFooter, ArticleCards, OpinionBox,
-                        VideoEmbed, SearchClient, JsonLd, icons
+app/                    home, journal, sectors, opportunities, fieldwork, about, search,
+                        feed.xml, sitemap, robots, error
+components/             SiteHeader (+ nav drawer), SiteFooter, ArticleCards, JournalListing,
+                        FieldworkFeature, EnquiryForm, VideoEmbed, ShareBar, SearchClient, JsonLd
 content/articles/       article MDX files (source of truth for all editorial content)
-content/viewpoints/     short opinion-box quotes
-lib/                    content loading/query helpers (articles.ts, viewpoints.ts, urls.ts)
-types/content.ts        section/sector definitions and TypeScript types
-public/images/          brand art, hero images, favicons
+lib/                    articles.ts (loading and queries), urls.ts
+types/content.ts        navigation, formats, sectors and TypeScript types
+public/images/          brand art, hero images, Fieldwork and Morne assets
 ```

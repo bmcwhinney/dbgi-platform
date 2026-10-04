@@ -2,7 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
-import type { Article, ArticleFrontmatter, SectionSlug, SectorSlug } from "@/types/content";
+import {
+  articleEyebrow,
+  type Article,
+  type ArticleFrontmatter,
+  type FormatSlug,
+  type SectorSlug,
+} from "@/types/content";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -37,19 +43,15 @@ export function getAllArticles(): Article[] {
   return loadArticles();
 }
 
-export function getArticlesBySection(section: SectionSlug): Article[] {
-  return loadArticles().filter((a) => a.section === section);
+export function getArticlesByFormat(format: FormatSlug): Article[] {
+  return loadArticles().filter((a) => a.format === format);
 }
 
 export function getArticlesBySector(sector: SectorSlug): Article[] {
   return loadArticles().filter((a) => a.sector === sector);
 }
 
-export function getArticle(section: string, slug: string): Article | undefined {
-  return loadArticles().find((a) => a.section === section && a.slug === slug);
-}
-
-export function getArticleBySlug(slug: string): Article | undefined {
+export function getArticle(slug: string): Article | undefined {
   return loadArticles().find((a) => a.slug === slug);
 }
 
@@ -84,25 +86,18 @@ export function getHomepageLayout(): HomepageLayout {
 export function getRelatedArticles(article: Article, limit = 3): Article[] {
   const all = loadArticles().filter((a) => a.slug !== article.slug);
 
-  const bySector = article.sector
-    ? all.filter((a) => a.sector === article.sector)
-    : [];
-  const bySection = all.filter(
-    (a) => a.section === article.section && !bySector.includes(a)
-  );
-  const rest = all.filter((a) => !bySector.includes(a) && !bySection.includes(a));
+  const bySector = article.sector ? all.filter((a) => a.sector === article.sector) : [];
+  const byFormat = all.filter((a) => a.format === article.format && !bySector.includes(a));
+  const rest = all.filter((a) => !bySector.includes(a) && !byFormat.includes(a));
 
-  return [...bySector, ...bySection, ...rest].slice(0, limit);
+  return [...bySector, ...byFormat, ...rest].slice(0, limit);
 }
 
 export interface SearchableArticle {
   title: string;
   standfirst: string;
   eyebrow: string;
-  section: string;
-  sector?: string;
   slug: string;
-  date: string;
   heroImage: string;
   heroImageAlt: string;
 }
@@ -111,11 +106,8 @@ export function getSearchIndex(): SearchableArticle[] {
   return loadArticles().map((a) => ({
     title: a.title,
     standfirst: a.standfirst,
-    eyebrow: a.eyebrow,
-    section: a.section,
-    sector: a.sector,
+    eyebrow: articleEyebrow(a),
     slug: a.slug,
-    date: a.date,
     heroImage: a.heroImage,
     heroImageAlt: a.heroImageAlt,
   }));

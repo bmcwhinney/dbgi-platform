@@ -23,6 +23,10 @@
   --rule: #DEDCD5;
   --rule-light: #EBE9E2;
 
+  /* Fieldwork Dominica (commercial division, deliberately distinct from editorial) */
+  --fieldwork-sage: #9BBA87;
+  --fieldwork-wash: #F0F4EC;
+
   /* Interactive States */
   --hover-tint: #FFF5F2;
 
@@ -393,77 +397,50 @@ a.eyebrow:hover {
   z-index: 2;
 }
 
-/* Opinion Structural Component */
-.opinion-box {
+/* Fieldwork feature box (homepage) */
+.feature-box {
   position: relative;
-  background: var(--rule-light);
+  background: var(--fieldwork-wash);
   padding: 24px;
   border-radius: 4px;
   margin-top: 32px;
   border: 1px solid var(--rule);
+  border-left: 4px solid var(--fieldwork-sage);
   display: block;
   text-decoration: none;
   transition: transform var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
   z-index: 2;
 }
 
-.opinion-box:hover {
+.feature-box:hover {
   transform: translateY(-2px);
   background: var(--paper-refined);
-  border-color: var(--volcanic-coral);
-  box-shadow: 0 12px 24px rgba(242, 76, 39, 0.06);
+  border-color: var(--fieldwork-sage);
+  box-shadow: 0 12px 24px rgba(13, 38, 23, 0.06);
 }
 
-.opinion-label {
+.feature-label,
+.feature-meta {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 16px;
 }
 
-.opinion-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--paper-refined);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--rule);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.opinion-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  transform: scale(1.12);
+.feature-wordmark {
   display: block;
+  width: 190px;
+  height: auto;
+  margin: 14px 0;
 }
 
-.opinion-name {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.opinion-role {
-  font-size: 0.8rem;
-  color: var(--ink-muted);
-  margin-bottom: 12px;
-}
-
-.opinion-text {
+.feature-text {
   font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.4;
   color: var(--ink);
-  font-style: italic;
+  margin-bottom: 14px;
 }
 
 /* Institutional Dark Pine Sidebar */
@@ -1047,8 +1024,8 @@ a.eyebrow:hover {
     font-size: 1.2rem;
   }
 
-  .opinion-text {
-    font-size: 1.1rem;
+  .feature-text {
+    font-size: 1.05rem;
   }
 
   .article-hero, .article-body {
@@ -1339,4 +1316,405 @@ button:focus-visible {
 
 @media (max-width: 768px) {
   .prose-page { padding: 40px 16px 56px; }
+}
+
+/* Shared page furniture: listing intro, pills, definition sections */
+.listing-standfirst {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 46rem;
+  margin-top: 14px;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eyebrow a:hover {
+  text-decoration: underline;
+}
+
+.sector-hub-scope {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.spec-section {
+  padding: 40px 32px;
+  background: var(--paper-refined);
+  border-bottom: 1px solid var(--rule);
+}
+
+.spec-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+.spec-lede {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  max-width: 46rem;
+  margin-bottom: 12px;
+}
+
+.spec-text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 46rem;
+}
+
+.spec-text + .spec-text,
+.spec-list + .spec-text {
+  margin-top: 16px;
+}
+
+.spec-text a {
+  color: var(--forest-core);
+  text-decoration-color: var(--nature-green);
+}
+
+.spec-list {
+  border-top: 1px solid var(--rule);
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.spec-row dt {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.spec-row dd {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 44rem;
+}
+
+.spec-row dd ol,
+.spec-row dd ul {
+  margin-left: 1.2em;
+}
+
+.spec-row dd li + li {
+  margin-top: 6px;
+}
+
+/* Fieldwork Dominica pages */
+.fieldwork {
+  border-top: 6px solid var(--fieldwork-sage);
+}
+
+.fieldwork-header {
+  padding: 48px 32px 36px;
+  background: var(--paper-refined);
+}
+
+.fieldwork-wordmark {
+  display: block;
+  width: min(420px, 82%);
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.fieldwork-title {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 40rem;
+}
+
+.fieldwork-note {
+  background: var(--fieldwork-wash);
+  padding: 16px 32px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--forest-core);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.fieldwork-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--forest-core);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.fieldwork-back:hover {
+  text-decoration: underline;
+}
+
+.fieldwork-mark {
+  width: 20px;
+  height: auto;
+}
+
+.service-table {
+  border-top: 1px solid var(--rule);
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.6fr;
+  gap: 28px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.service-head {
+  padding: 12px 0;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.service-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.service-decision {
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.two-col-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.concept-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 1fr;
+  gap: 32px;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+
+.concept-card:hover {
+  border-color: var(--fieldwork-sage);
+}
+
+.concept-card img,
+.concept-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.concept-card-body {
+  padding: 24px 32px 24px 0;
+}
+
+.concept-stage {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--forest-core);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.concept-card-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.concept-figure {
+  border-top: 1px solid var(--rule);
+}
+
+.concept-figure figcaption {
+  padding: 10px 32px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Enquiry form */
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 46rem;
+  margin-top: 28px;
+}
+
+.enquiry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.enquiry-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: normal;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+  outline: none;
+  border-color: var(--forest-core);
+}
+
+.enquiry-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.enquiry-notice {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--fieldwork-wash);
+  border-left: 3px solid var(--fieldwork-sage);
+}
+
+/* Article record: image credit, sources, disclosure */
+.article-credit {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.article-note {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.article-note + .article-note {
+  margin-top: 24px;
+}
+
+.article-note-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.article-note ul,
+.article-note p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .spec-section,
+  .fieldwork-header {
+    padding: 28px 16px;
+  }
+
+  .fieldwork-note,
+  .concept-figure figcaption {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .spec-row,
+  .service-row,
+  .two-col,
+  .concept-card,
+  .enquiry-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .two-col,
+  .enquiry-grid {
+    gap: 20px;
+  }
+
+  .service-head {
+    display: none;
+  }
+
+  .concept-card-body {
+    padding: 4px 20px 20px;
+  }
+
+  .spec-lede {
+    font-size: 1.25rem;
+  }
 }

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { SearchableArticle } from "@/lib/articles";
+import { articleHref } from "@/lib/urls";
 import { SearchIcon } from "./icons";
 
 export function SearchClient({ articles }: { articles: SearchableArticle[] }) {
@@ -45,7 +46,7 @@ export function SearchClient({ articles }: { articles: SearchableArticle[] }) {
       {results.length > 0 && (
         <div className="listing-grid">
           {results.map((article) => (
-            <Link key={article.slug} href={`/${article.section}/${article.slug}`} className="listing-card">
+            <Link key={article.slug} href={articleHref(article)} className="listing-card">
               <div className="mid-image-placeholder">
                 <Image
                   src={article.heroImage}

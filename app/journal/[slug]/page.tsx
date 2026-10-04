@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllArticles, getArticle, getRelatedArticles } from "@/lib/articles";
-import { sectionLabel, sectorLabel } from "@/types/content";
+import { formatLabel, sectorLabel } from "@/types/content";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { mdxComponents } from "@/lib/mdx-components";
 import { ClockIcon } from "@/components/icons";
@@ -14,19 +15,16 @@ import { ShareBar } from "@/components/ShareBar";
 import { articleHref, absoluteArticleUrl } from "@/lib/urls";
 
 export function generateStaticParams() {
-  return getAllArticles().map((article) => ({
-    section: article.section,
-    slug: article.slug,
-  }));
+  return getAllArticles().map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ section: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { section, slug } = await params;
-  const article = getArticle(section, slug);
+  const { slug } = await params;
+  const article = getArticle(slug);
   if (!article) return {};
 
   return {
@@ -40,8 +38,9 @@ export async function generateMetadata({
       images: [{ url: article.heroImage, alt: article.heroImageAlt }],
       type: "article",
       publishedTime: article.date,
+      modifiedTime: article.updated,
       authors: [article.author],
-      section: sectionLabel(article.section),
+      section: formatLabel(article.format),
       tags: article.sector ? [sectorLabel(article.sector)] : undefined,
       url: articleHref(article),
     },
@@ -54,29 +53,33 @@ export async function generateMetadata({
   };
 }
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<{ section: string; slug: string }>;
-}) {
-  const { section, slug } = await params;
-  const article = getArticle(section, slug);
-  if (!article) notFound();
-
-  const related = getRelatedArticles(article);
-
-  const dateLabel = new Date(article.date).toLocaleDateString("en-US", {
+function formatDate(value: string): string {
+  return new Date(value).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+}
+
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = getArticle(slug);
+  if (!article) notFound();
+
+  const related = getRelatedArticles(article);
 
   return (
     <article>
       <ArticleJsonLd article={article} />
       <div className="article-hero">
         <span className="eyebrow">
-          {article.eyebrow} &middot; {sectionLabel(article.section)}
+          {formatLabel(article.format)}
+          {article.sector && (
+            <>
+              {" "}
+              &middot; <Link href={`/sectors/${article.sector}`}>{sectorLabel(article.sector)}</Link>
+            </>
+          )}
         </span>
         <h1 className="lead-headline">{article.title}</h1>
         <p className="lead-standfirst">{article.standfirst}</p>
@@ -91,7 +94,8 @@ export default async function ArticlePage({
             <div className="article-byline-name">{article.author}</div>
             <div className="article-byline-meta">
               {article.authorRole ? `${article.authorRole} · ` : ""}
-              {dateLabel}
+              {formatDate(article.date)}
+              {article.updated ? ` · Updated ${formatDate(article.updated)}` : ""}
             </div>
           </div>
           <div className="read-meta" style={{ marginLeft: "auto" }}>
@@ -119,15 +123,38 @@ export default async function ArticlePage({
             />
           )}
         </div>
+        {article.imageCredit && <p className="article-credit">{article.imageCredit}</p>}
       </div>
 
       <div className="article-body">
         <MDXRemote source={article.content} components={mdxComponents} />
+
+        {article.sources && article.sources.length > 0 && (
+          <aside className="article-note" aria-label="Sources">
+            <div className="article-note-label">Sources</div>
+            <ul>
+              {article.sources.map((source) => (
+                <li key={source.url}>
+                  <a href={source.url} rel="noopener noreferrer" target="_blank">
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
+        {article.disclosure && (
+          <aside className="article-note" aria-label="Disclosure">
+            <div className="article-note-label">Disclosure</div>
+            <p>{article.disclosure}</p>
+          </aside>
+        )}
       </div>
 
       {related.length > 0 && (
         <section className="related-section" aria-label="Related stories">
-          <div className="related-section-label">More in {sectionLabel(article.section)}</div>
+          <div className="related-section-label">More from the Journal</div>
           <div className="related-grid">
             {related.map((r) => (
               <ListingCard key={r.slug} article={r} />

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Article } from "@/types/content";
+import { articleEyebrow, type Article } from "@/types/content";
 import { articleHref } from "@/lib/urls";
 import { ClockIcon, PlayIcon, StoreIcon, BulbIcon, LeafIcon, RocketIcon } from "./icons";
 
@@ -26,7 +26,7 @@ export function LeadCard({ article }: { article: Article }) {
           priority
         />
       </div>
-      <span className="eyebrow">{article.eyebrow}</span>
+      <span className="eyebrow">{articleEyebrow(article)}</span>
       <h1 className="lead-headline">
         <Link href={href} className="stretched-link">
           {article.title}
@@ -49,7 +49,7 @@ export function MidCard({ article }: { article: Article }) {
         {article.video && <PlayBadge />}
         <Image src={article.heroImage} alt={article.heroImageAlt} width={640} height={420} />
       </div>
-      <span className="eyebrow">{article.eyebrow}</span>
+      <span className="eyebrow">{articleEyebrow(article)}</span>
       <h2 className="mid-headline serif-text">
         <Link href={href} className="stretched-link">
           {article.title}
@@ -64,11 +64,10 @@ export function MidCard({ article }: { article: Article }) {
 }
 
 const SECTOR_ICONS: Record<string, typeof StoreIcon> = {
-  "clean-energy": BulbIcon,
-  agribusiness: LeafIcon,
-  tourism: LeafIcon,
-  "tech-digital": RocketIcon,
-  "blue-economy": StoreIcon,
+  energy: BulbIcon,
+  "food-and-agriculture": LeafIcon,
+  "natural-ingredients": LeafIcon,
+  "infrastructure-and-connectivity": RocketIcon,
 };
 
 export function SideItem({ article }: { article: Article }) {
@@ -80,7 +79,7 @@ export function SideItem({ article }: { article: Article }) {
       </div>
       <div className="side-content-block">
         <div className="side-title">{article.title}</div>
-        <div className="side-sub">{article.eyebrow}</div>
+        <div className="side-sub">{articleEyebrow(article)}</div>
       </div>
     </Link>
   );
@@ -106,7 +105,7 @@ export function ListingCard({ article }: { article: Article }) {
         {article.video && <PlayBadge />}
         <Image src={article.heroImage} alt={article.heroImageAlt} width={640} height={420} />
       </div>
-      <span className="eyebrow">{article.eyebrow}</span>
+      <span className="eyebrow">{articleEyebrow(article)}</span>
       <h3 className="listing-card-headline serif-text">{article.title}</h3>
       <div className="read-meta">
         <ClockIcon />

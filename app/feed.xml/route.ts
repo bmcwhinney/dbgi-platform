@@ -1,5 +1,6 @@
 import { getAllArticles } from "@/lib/articles";
 import { articleHref } from "@/lib/urls";
+import { articleEyebrow } from "@/types/content";
 
 export const dynamic = "force-static";
 
@@ -28,7 +29,7 @@ export async function GET() {
       <pubDate>${new Date(article.date).toUTCString()}</pubDate>
       <description>${escapeXml(article.standfirst)}</description>
       <author>${escapeXml(article.author)}</author>
-      <category>${escapeXml(article.eyebrow)}</category>
+      <category>${escapeXml(articleEyebrow(article))}</category>
     </item>`;
     })
     .join("");

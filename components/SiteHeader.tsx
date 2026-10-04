@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuIcon, SearchIcon, CloseIcon } from "./icons";
-import { SECTIONS, SECTORS } from "@/types/content";
+import { NAV, SECTORS } from "@/types/content";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -87,13 +87,13 @@ export function SiteHeader() {
       </section>
 
       <nav className="nav-strip" aria-label="Main navigation">
-        {SECTIONS.map((section) => (
+        {NAV.map((item) => (
           <Link
-            key={section.slug}
-            href={`/${section.slug}`}
-            className={pathname?.startsWith(`/${section.slug}`) ? "active" : undefined}
+            key={item.href}
+            href={item.href}
+            className={pathname?.startsWith(item.href) ? "active" : undefined}
           >
-            {section.label}
+            {item.label}
           </Link>
         ))}
       </nav>
@@ -113,13 +113,16 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <div className="nav-drawer-group-label">Sections</div>
+            <div className="nav-drawer-group-label">DBGI</div>
             <nav>
-              {SECTIONS.map((section) => (
-                <Link key={section.slug} href={`/${section.slug}`} className="nav-drawer-link">
-                  {section.label}
+              {NAV.slice(0, 3).map((item) => (
+                <Link key={item.href} href={item.href} className="nav-drawer-link">
+                  {item.label}
                 </Link>
               ))}
+              <Link href="/journal/format/profile" className="nav-drawer-link small">
+                People
+              </Link>
             </nav>
 
             <div className="nav-drawer-group-label">Sectors</div>
@@ -127,12 +130,22 @@ export function SiteHeader() {
               {SECTORS.map((sector) => (
                 <Link
                   key={sector.slug}
-                  href={`/sector/${sector.slug}`}
+                  href={`/sectors/${sector.slug}`}
                   className="nav-drawer-link small"
                 >
                   {sector.label}
                 </Link>
               ))}
+            </nav>
+
+            <div className="nav-drawer-group-label">Fieldwork Dominica</div>
+            <nav>
+              <Link href="/fieldwork" className="nav-drawer-link">
+                Fieldwork
+              </Link>
+              <Link href="/fieldwork/concepts/morne" className="nav-drawer-link small">
+                Morne
+              </Link>
             </nav>
 
             <div className="nav-drawer-group-label">More</div>

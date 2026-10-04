@@ -1,6 +1,5 @@
 import type { Article } from "@/types/content";
-
-const SITE_URL = "https://dominicabgi.site";
+import { SITE_URL, absoluteArticleUrl } from "@/lib/urls";
 
 export function OrganizationJsonLd() {
   const data = {
@@ -51,7 +50,7 @@ export function ArticleJsonLd({ article }: { article: Article }) {
     description: article.standfirst,
     image: [`${SITE_URL}${article.heroImage}`],
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.updated ?? article.date,
     author: {
       "@type": "Person",
       name: article.author,
@@ -67,7 +66,7 @@ export function ArticleJsonLd({ article }: { article: Article }) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_URL}/${article.section}/${article.slug}`,
+      "@id": absoluteArticleUrl(article),
     },
   };
 

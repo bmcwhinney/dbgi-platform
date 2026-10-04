@@ -8,7 +8,7 @@ export function SectorStrip({ active }: { active?: string }) {
       {SECTORS.map((sector) => (
         <Link
           key={sector.slug}
-          href={`/sector/${sector.slug}`}
+          href={`/sectors/${sector.slug}`}
           className={sector.slug === active ? "sector-pill active" : "sector-pill"}
         >
           {sector.label}

@@ -6,10 +6,11 @@ export function SiteFooter() {
     <footer className="site-footer">
       <nav className="site-footer-links" aria-label="Footer navigation">
         {SECTORS.map((sector) => (
-          <Link key={sector.slug} href={`/sector/${sector.slug}`}>
+          <Link key={sector.slug} href={`/sectors/${sector.slug}`}>
             {sector.label}
           </Link>
         ))}
+        <Link href="/fieldwork">Fieldwork</Link>
         <Link href="/about">About</Link>
         <Link href="/feed.xml">RSS</Link>
       </nav>
