@@ -93,6 +93,18 @@ export interface Article extends ArticleFrontmatter {
   content: string;
 }
 
+export interface ViewpointFrontmatter {
+  name: string;
+  role: string;
+  image: string;
+  relatedSlug?: string;
+}
+
+export interface Viewpoint extends ViewpointFrontmatter {
+  slug: string;
+  quote: string;
+}
+
 export function formatLabel(slug: string): string {
   return FORMATS.find((f) => f.slug === slug)?.label ?? slug;
 }

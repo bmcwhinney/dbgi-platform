@@ -1,11 +1,14 @@
 import { getHomepageLayout } from "@/lib/articles";
-import { LeadCard, MidCard, MidTextCard, SideItem, BottomCard } from "@/components/ArticleCards";
+import { LeadCard, MidCard, SideItem, BottomCard } from "@/components/ArticleCards";
 import { FieldworkFeature } from "@/components/FieldworkFeature";
+import { OpinionBox } from "@/components/OpinionBox";
+import { getLatestViewpoint } from "@/lib/viewpoints";
 import { SectorStrip } from "@/components/SectorStrip";
 import { WebsiteJsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
-  const { lead, mid, midSecondary, side, bottom } = getHomepageLayout();
+  const { lead, mid, side, bottom } = getHomepageLayout();
+  const viewpoint = getLatestViewpoint();
 
   return (
     <>
@@ -16,12 +19,7 @@ export default function HomePage() {
 
         <article className="mid-col">
           {mid && <MidCard article={mid} />}
-          {midSecondary && (
-            <>
-              <hr className="mid-rule" />
-              <MidTextCard article={midSecondary} />
-            </>
-          )}
+          {viewpoint && <OpinionBox viewpoint={viewpoint} />}
         </article>
 
         <aside className="side-col">

@@ -63,20 +63,6 @@ export function MidCard({ article }: { article: Article }) {
   );
 }
 
-export function MidTextCard({ article }: { article: Article }) {
-  return (
-    <div className="mid-story-block card-link-target">
-      <span className="eyebrow">{articleEyebrow(article)}</span>
-      <h2 className="bottom-headline serif-text">
-        <Link href={articleHref(article)} className="stretched-link">
-          {article.title}
-        </Link>
-      </h2>
-      <p className="bottom-snip">{article.standfirst}</p>
-    </div>
-  );
-}
-
 const SECTOR_ICONS: Record<string, typeof StoreIcon> = {
   energy: BulbIcon,
   "food-and-agriculture": LeafIcon,
