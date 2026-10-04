@@ -1,11 +1,11 @@
 import { getHomepageLayout } from "@/lib/articles";
-import { LeadCard, MidCard, SideItem, BottomCard } from "@/components/ArticleCards";
+import { LeadCard, MidCard, MidTextCard, SideItem, BottomCard } from "@/components/ArticleCards";
 import { FieldworkFeature } from "@/components/FieldworkFeature";
 import { SectorStrip } from "@/components/SectorStrip";
 import { WebsiteJsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
-  const { lead, mid, side, bottom } = getHomepageLayout();
+  const { lead, mid, midSecondary, side, bottom } = getHomepageLayout();
 
   return (
     <>
@@ -16,7 +16,12 @@ export default function HomePage() {
 
         <article className="mid-col">
           {mid && <MidCard article={mid} />}
-          <FieldworkFeature />
+          {midSecondary && (
+            <>
+              <hr className="mid-rule" />
+              <MidTextCard article={midSecondary} />
+            </>
+          )}
         </article>
 
         <aside className="side-col">
@@ -28,6 +33,8 @@ export default function HomePage() {
       </main>
 
       <SectorStrip />
+
+      <FieldworkFeature />
 
       <footer className="bottom-grid">
         {bottom.map((article) => (

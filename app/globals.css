@@ -23,7 +23,7 @@
   --rule: #DEDCD5;
   --rule-light: #EBE9E2;
 
-  /* Fieldwork Dominica (commercial division, deliberately distinct from editorial) */
+  /* Fieldwork Dominica: sister studio with its own mark, set on DBGI's forest surface */
   --fieldwork-sage: #9BBA87;
   --fieldwork-wash: #F0F4EC;
 
@@ -397,50 +397,10 @@ a.eyebrow:hover {
   z-index: 2;
 }
 
-/* Fieldwork feature box (homepage) */
-.feature-box {
-  position: relative;
-  background: var(--fieldwork-wash);
-  padding: 24px;
-  border-radius: 4px;
-  margin-top: 32px;
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--fieldwork-sage);
-  display: block;
-  text-decoration: none;
-  transition: transform var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
-  z-index: 2;
-}
-
-.feature-box:hover {
-  transform: translateY(-2px);
-  background: var(--paper-refined);
-  border-color: var(--fieldwork-sage);
-  box-shadow: 0 12px 24px rgba(13, 38, 23, 0.06);
-}
-
-.feature-label,
-.feature-meta {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.feature-wordmark {
-  display: block;
-  width: 190px;
-  height: auto;
-  margin: 14px 0;
-}
-
-.feature-text {
-  font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: 1.15rem;
-  line-height: 1.4;
-  color: var(--ink);
-  margin-bottom: 14px;
+.mid-rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 32px 0;
 }
 
 /* Institutional Dark Pine Sidebar */
@@ -1024,9 +984,6 @@ a.eyebrow:hover {
     font-size: 1.2rem;
   }
 
-  .feature-text {
-    font-size: 1.05rem;
-  }
 
   .article-hero, .article-body {
     padding-left: 16px;
@@ -1425,97 +1382,197 @@ button:focus-visible {
   margin-top: 6px;
 }
 
-/* Fieldwork Dominica pages */
-.fieldwork {
-  border-top: 6px solid var(--fieldwork-sage);
-}
-
-.fieldwork-header {
-  padding: 48px 32px 36px;
-  background: var(--paper-refined);
-}
-
-.fieldwork-wordmark {
-  display: block;
-  width: min(420px, 82%);
-  height: auto;
-  margin-bottom: 24px;
-}
-
-.fieldwork-title {
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  max-width: 40rem;
-}
-
-.fieldwork-note {
-  background: var(--fieldwork-wash);
-  padding: 16px 32px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--forest-core);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-
-.fieldwork-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.8rem;
+/* Fieldwork Dominica */
+.fw-kicker {
+  font-size: 0.75rem;
   font-weight: 800;
   color: var(--forest-core);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  line-height: 1.7;
+}
+
+.fw-button {
+  display: inline-block;
+  padding: 12px 22px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--paper-refined);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  margin-bottom: 16px;
+  border: 1px solid var(--fieldwork-sage);
+  border-radius: 2px;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.fieldwork-back:hover {
-  text-decoration: underline;
+.fw-button:hover,
+.fw-band-panel:hover .fw-button {
+  background: var(--fieldwork-sage);
+  color: var(--forest-core);
 }
 
-.fieldwork-mark {
-  width: 20px;
+.fw-button-dark {
+  color: var(--forest-core);
+  border-color: var(--forest-core);
+  margin-top: 8px;
+}
+
+.fw-button-dark:hover {
+  background: var(--forest-core);
+  color: var(--paper-refined);
+}
+
+.fw-link {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding-bottom: 3px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--forest-core);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--fieldwork-sage);
+}
+
+/* Homepage band */
+.fw-band {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  background: var(--forest-core);
+}
+
+.fw-band-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  padding: 48px 40px;
+  text-decoration: none;
+}
+
+.fw-band-wordmark {
+  width: 230px;
   height: auto;
 }
 
-.service-table {
-  border-top: 1px solid var(--rule);
+.fw-band-title {
+  font-family: var(--font-newsreader, 'Newsreader'), serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--paper-refined);
 }
 
-.service-row {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1.6fr;
-  gap: 28px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--rule);
-  font-size: 1rem;
+.fw-band-panel .fw-kicker {
+  color: var(--fieldwork-sage);
+}
+
+.fw-band-concept {
+  position: relative;
+  display: block;
+  min-height: 360px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.fw-band-concept img,
+.fw-concept-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.fw-band-concept:hover img,
+.fw-concept:hover .fw-concept-image img {
+  transform: scale(1.03);
+}
+
+.fw-band-caption {
+  position: absolute;
+  left: 28px;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-newsreader, 'Newsreader'), serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--forest-core);
+}
+
+.fw-band-caption .fw-kicker {
+  font-family: var(--font-public-sans, 'Public Sans'), sans-serif;
+}
+
+/* Fieldwork page */
+.fw-hero {
+  padding: 64px 40px 56px;
+  background: var(--forest-core);
+}
+
+.fw-hero-wordmark {
+  display: block;
+  width: min(440px, 84%);
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.fw-hero-title {
+  max-width: 46rem;
+  margin-bottom: 20px;
+  font-family: var(--font-newsreader, 'Newsreader'), serif;
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--paper-refined);
+}
+
+.fw-hero-text {
+  max-width: 40rem;
+  margin-bottom: 28px;
+  font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--ink-soft);
+  color: #C9D3CB;
 }
 
-.service-head {
-  padding: 12px 0;
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.fw-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
 }
 
-.service-name {
-  font-size: 1.35rem;
+.fw-service {
+  padding: 28px;
+  background: var(--paper-refined);
+}
+
+.fw-service-name {
+  margin: 12px 0;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
-.service-decision {
+.fw-service-question {
+  margin-bottom: 12px;
   font-size: 1.1rem;
   font-style: italic;
   line-height: 1.4;
+}
+
+.fw-service-text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
 }
 
 .two-col {
@@ -1530,50 +1587,71 @@ button:focus-visible {
   margin-bottom: 10px;
 }
 
-.concept-card {
+.fw-concept {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) 1fr;
-  gap: 32px;
-  align-items: center;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  overflow: hidden;
+  grid-template-columns: 1.4fr 1fr;
+  background: var(--paper-refined);
+  border-bottom: 1px solid var(--rule);
   text-decoration: none;
-  transition: border-color var(--transition-fast);
 }
 
-.concept-card:hover {
-  border-color: var(--fieldwork-sage);
+.fw-concept-image {
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
 }
 
-.concept-card img,
-.concept-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
+.fw-concept-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 48px 40px;
 }
 
-.concept-card-body {
-  padding: 24px 32px 24px 0;
+.fw-concept-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.concept-stage {
-  font-size: 0.75rem;
+/* Concept page */
+.fw-concept-header {
+  padding: 40px 32px 36px;
+  background: var(--paper-refined);
+}
+
+.fw-concept-header .fw-concept-title {
+  margin-top: 4px;
+}
+
+.fieldwork-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--forest-core);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 10px;
+  text-decoration: none;
 }
 
-.concept-card-title {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 8px;
+.fieldwork-back:hover {
+  text-decoration: underline;
 }
 
-.concept-figure {
-  border-top: 1px solid var(--rule);
+.fieldwork-mark {
+  width: 20px;
+  height: auto;
+}
+
+.concept-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .concept-figure figcaption {
@@ -1682,36 +1760,45 @@ button:focus-visible {
 
 @media (max-width: 768px) {
   .spec-section,
-  .fieldwork-header {
+  .fw-concept-header {
     padding: 28px 16px;
   }
 
-  .fieldwork-note,
+  .fw-hero {
+    padding: 40px 16px;
+  }
+
+  .fw-band-panel,
+  .fw-concept-panel {
+    padding: 36px 16px;
+  }
+
   .concept-figure figcaption {
     padding-left: 16px;
     padding-right: 16px;
   }
 
   .spec-row,
-  .service-row,
+  .enquiry-grid,
   .two-col,
-  .concept-card,
-  .enquiry-grid {
+  .fw-services,
+  .fw-band,
+  .fw-concept {
     grid-template-columns: 1fr;
+  }
+
+  .spec-row {
     gap: 8px;
   }
 
-  .two-col,
-  .enquiry-grid {
+  .enquiry-grid,
+  .two-col {
     gap: 20px;
   }
 
-  .service-head {
-    display: none;
-  }
-
-  .concept-card-body {
-    padding: 4px 20px 20px;
+  .fw-band-concept,
+  .fw-concept-image {
+    min-height: 260px;
   }
 
   .spec-lede {

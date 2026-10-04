@@ -1,6 +1,6 @@
 # DBGI Platform
 
-DBGI (Dominica Business Growth & Innovation) is a business publication and intelligence platform focused on Dominica, with a commercial division, Fieldwork Dominica. This repo is the website: Next.js (App Router), MDX articles, Mux video.
+DBGI (Dominica Business Growth & Innovation) is a business publication and intelligence platform focused on Dominica, and home to Fieldwork Dominica, its advisory and venture development arm. This repo is the website: Next.js (App Router), MDX articles, Mux video.
 
 ## Site structure
 
@@ -9,9 +9,9 @@ DBGI (Dominica Business Growth & Innovation) is a business publication and intel
 | Journal | `/journal`, `/journal/[slug]`, `/journal/format/[format]` | Every article. Formats: news, analysis, profile (the People series), briefing, opinion. |
 | Sectors | `/sectors`, `/sectors/[sector]` | The five covered sectors, each with its scope, the business questions pursued and its linked reporting. |
 | Opportunities | `/opportunities` | The evidence standard and publication stages for opportunity briefs. No brief is published yet. |
-| Fieldwork | `/fieldwork`, `/fieldwork/concepts/morne` | The commercial division: services, ways to engage, concepts, enquiry form. |
+| Fieldwork | `/fieldwork`, `/fieldwork/concepts/morne` | The advisory and venture arm: services, how it works, concepts, enquiry form. |
 
-Fieldwork pages carry their own identity (sage accent, brush wordmark) so commissioned work is never mistaken for editorial. Formats and sectors are defined in `types/content.ts`. Old section URLs (`/news/...`, `/founders/...`, `/sector/...`) redirect from `next.config.mjs`.
+Fieldwork is presented as a sister studio: its own brush wordmark and sage accent on DBGI's forest surface, with a band on the homepage. No disclaimer labels; the separation from the newsroom is stated once, on About. Formats and sectors are defined in `types/content.ts`. Old section URLs (`/news/...`, `/founders/...`, `/sector/...`) redirect from `next.config.mjs`.
 
 **Not wired up yet:** the Fieldwork enquiry form has no backend. It validates, sends nothing, and tells the visitor so (`components/EnquiryForm.tsx`). There is no newsletter sign-up.
 
@@ -74,7 +74,7 @@ Put images in `public/images/`. Reference them from frontmatter/body as `/images
 
 An article is written once and appears wherever it belongs: the homepage, its format series in the Journal, and its sector page. The label on cards is the sector (or the format when there is no sector; opinion is always labelled Opinion).
 
-The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. The box under the mid story is the Fieldwork feature.
+The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. A text-only third story sits under the mid story, and the Fieldwork band follows the sector strip.
 
 ## Publishing a video article
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "DBGI is a business publication and intelligence platform focused on Dominica, with a commercial division, Fieldwork Dominica.",
+    "DBGI is a business publication and intelligence platform focused on Dominica, and home to Fieldwork Dominica, its advisory and venture development arm.",
   alternates: { canonical: "/about" },
 };
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
       <h2>Fieldwork Dominica</h2>
       <p>
-        <Link href="/fieldwork">Fieldwork Dominica</Link> is DBGI&apos;s commercial division. It
+        <Link href="/fieldwork">Fieldwork Dominica</Link> is DBGI&apos;s advisory and venture development arm. It
         takes on commissioned research, advisory and concept development, and develops original
         concepts of its own, the first of which is Morne.
       </p>

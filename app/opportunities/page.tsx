@@ -82,7 +82,7 @@ export default function OpportunitiesPage() {
         <p className="spec-text">
           A brief appears here only when it meets the standard below. The first proposition being
           worked up is <Link href="/fieldwork/concepts/morne">Morne</Link>, a premium water concept
-          from Fieldwork Dominica, which is DBGI&apos;s own commercial division.
+          from Fieldwork Dominica, DBGI&apos;s advisory and venture development arm.
         </p>
       </section>
 

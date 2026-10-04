@@ -58,6 +58,7 @@ export function getArticle(slug: string): Article | undefined {
 export interface HomepageLayout {
   lead?: Article;
   mid?: Article;
+  midSecondary?: Article;
   side: Article[];
   bottom: Article[];
 }
@@ -78,8 +79,9 @@ export function getHomepageLayout(): HomepageLayout {
   return {
     lead,
     mid,
-    side: rest.slice(0, 4),
-    bottom: rest.slice(4, 7),
+    midSecondary: rest[0],
+    side: rest.slice(1, 5),
+    bottom: rest.slice(5, 8),
   };
 }
 
