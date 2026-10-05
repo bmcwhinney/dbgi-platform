@@ -3,9 +3,9 @@ import Link from "next/link";
 import type { Viewpoint } from "@/types/content";
 
 export function OpinionBox({ viewpoint }: { viewpoint: Viewpoint }) {
-  const href = viewpoint.relatedSlug
-    ? `/journal/${viewpoint.relatedSlug}`
-    : "/journal/format/opinion";
+  const href =
+    viewpoint.href ??
+    (viewpoint.relatedSlug ? `/journal/${viewpoint.relatedSlug}` : "/journal/format/opinion");
 
   return (
     <Link href={href} className="opinion-box">

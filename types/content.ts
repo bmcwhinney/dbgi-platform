@@ -98,6 +98,7 @@ export interface ViewpointFrontmatter {
   role: string;
   image: string;
   relatedSlug?: string;
+  href?: string;
 }
 
 export interface Viewpoint extends ViewpointFrontmatter {
