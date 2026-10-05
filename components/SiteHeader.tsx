@@ -1,15 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuIcon, SearchIcon, CloseIcon } from "./icons";
 import { NAV, SECTORS } from "@/types/content";
 
+// Height of the pinned top strip; keep in step with --top-bar-h in globals.css.
+const TOP_BAR_HEIGHT = 64;
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [markVisible, setMarkVisible] = useState(false);
+  const [navDocked, setNavDocked] = useState(false);
+  const mastheadRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+
+  // The compact mark takes over as the masthead logo passes under the top strip,
+  // and the nav ribbon docks once the whole masthead has gone.
+  useEffect(() => {
+    const masthead = mastheadRef.current;
+    const logo = logoRef.current;
+    if (!masthead || !logo) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.target === logo) setMarkVisible(!entry.isIntersecting);
+          else setNavDocked(!entry.isIntersecting);
+        }
+      },
+      { rootMargin: `-${TOP_BAR_HEIGHT}px 0px 0px 0px` },
+    );
+    observer.observe(masthead);
+    observer.observe(logo);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setDrawerOpen(false);
@@ -30,7 +58,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="top-bar">
+      <header className={markVisible ? "top-bar has-mark" : "top-bar"}>
         <div className="top-left">
           <button
             className="menu-icon"
@@ -46,8 +74,13 @@ export function SiteHeader() {
             </Link>
           </nav>
         </div>
+        <div className="top-middle">
+          <Link href="/" className="top-mark" aria-label="DBGI home">
+            DBGI
+          </Link>
+        </div>
         <div className="top-right">
-          <Link href="/search" className="top-icon" aria-label="Search" style={{ marginRight: 4 }}>
+          <Link href="/search" className="top-icon" aria-label="Search">
             <SearchIcon />
           </Link>
           <button className="login-text">Log in</button>
@@ -55,7 +88,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      <section className="masthead-row">
+      <section className="masthead-row" ref={mastheadRef}>
         <aside className="masthead-aside masthead-dispatch left">
           <Image
             className="masthead-dispatch-img"
@@ -68,7 +101,7 @@ export function SiteHeader() {
         </aside>
 
         <div className="masthead-brand">
-          <Link href="/" className="masthead-logo">
+          <Link href="/" className="masthead-logo" ref={logoRef}>
             DBGI
           </Link>
           <p className="masthead-tagline">Dominica Business Growth &amp; Innovation</p>
@@ -86,7 +119,7 @@ export function SiteHeader() {
         </aside>
       </section>
 
-      <nav className="nav-strip" aria-label="Main navigation">
+      <nav className={navDocked ? "nav-strip is-docked" : "nav-strip"} aria-label="Main navigation">
         {NAV.map((item) => (
           <Link
             key={item.href}

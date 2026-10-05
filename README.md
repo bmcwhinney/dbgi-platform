@@ -27,6 +27,7 @@ Fieldwork gets one row on the homepage in the same format as the editorial rows,
 ## Features
 
 - **Search** (`/search`): instant client-side search over every article's title, standfirst and label.
+- **Pinned header (desktop)**: the top strip and the section nav stay in view while scrolling, and the DBGI mark slides into the middle of the strip once the masthead has scrolled away. Phones keep the header in the page flow.
 - **Full site menu**: the hamburger opens a drawer with the Journal, sectors, Fieldwork, search and About.
 - **Related stories**: every article ends with more from the Journal, prioritising the same sector, then the same format.
 - **Sharing**: share bar plus per-article Open Graph and Twitter cards.
