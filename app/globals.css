@@ -980,21 +980,31 @@ a.eyebrow:hover {
 }
 
 /* Footer */
-/* Newsletter block, above the footer on every page */
-.newsletter-block {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-  align-items: center;
-  gap: 48px;
-  padding: 48px 64px;
-  background: var(--coral-wash);
+/* Newsletter box, above the footer on every page: a coral card set on the page gutters */
+.newsletter-wrap {
+  padding: 48px 32px;
+  background: var(--paper-refined);
   border-top: 1px solid var(--rule);
 }
 
+.newsletter-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: 48px;
+  padding: 44px 56px;
+  background: var(--coral-wash);
+  border-radius: 6px;
+}
+
 .newsletter-art {
-  justify-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter-art img {
   width: 100%;
-  max-width: 220px;
+  max-width: 240px;
   height: auto;
 }
 
@@ -1058,14 +1068,21 @@ a.subscribe-btn {
 }
 
 @media (max-width: 768px) {
+  .newsletter-wrap {
+    padding: 28px 16px;
+  }
+
   .newsletter-block {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 36px 16px;
+    gap: 16px;
+    padding: 28px 20px;
   }
 
   .newsletter-art {
-    justify-self: start;
+    justify-content: flex-start;
+  }
+
+  .newsletter-art img {
     max-width: 120px;
   }
 

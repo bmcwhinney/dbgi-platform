@@ -13,42 +13,45 @@ export function NewsletterBlock() {
   }
 
   return (
-    <section className="newsletter-block" id="newsletter" aria-labelledby="newsletter-heading">
-      <Image
-        className="newsletter-art"
-        src="/images/founder-dispatch-parrot.png"
-        alt=""
-        width={320}
-        height={250}
-      />
-      <div className="newsletter-copy">
-        <h2 id="newsletter-heading" className="newsletter-heading serif-text">
-          Weekly business news from the nature isle
-        </h2>
-        <p className="newsletter-text">
-          One email a week on what is changing for business in Dominica.
-        </p>
-        <form className="newsletter-form" onSubmit={handleSubmit}>
-          <label className="visually-hidden" htmlFor="newsletter-email">
-            Email address
-          </label>
-          <input
-            id="newsletter-email"
-            type="email"
-            name="email"
-            placeholder="Enter your email address"
-            autoComplete="email"
-            required
+    <section className="newsletter-wrap" id="newsletter" aria-labelledby="newsletter-heading">
+      <div className="newsletter-block">
+        <div className="newsletter-art">
+          <Image
+            src="/images/founder-dispatch-parrot.png"
+            alt=""
+            width={320}
+            height={250}
           />
-          <button type="submit" className="subscribe-btn">
-            Subscribe
-          </button>
-        </form>
-        {submitted && (
-          <p className="newsletter-note" role="status">
-            The newsletter is not open for sign-ups yet, so your address has not been saved.
+        </div>
+        <div className="newsletter-copy">
+          <h2 id="newsletter-heading" className="newsletter-heading serif-text">
+            Weekly business news from the nature isle
+          </h2>
+          <p className="newsletter-text">
+            One email a week on what is changing for business in Dominica.
           </p>
-        )}
+          <form className="newsletter-form" onSubmit={handleSubmit}>
+            <label className="visually-hidden" htmlFor="newsletter-email">
+              Email address
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              autoComplete="email"
+              required
+            />
+            <button type="submit" className="subscribe-btn">
+              Subscribe
+            </button>
+          </form>
+          {submitted && (
+            <p className="newsletter-note" role="status">
+              The newsletter is not open for sign-ups yet, so your address has not been saved.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );
