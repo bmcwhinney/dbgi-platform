@@ -14,6 +14,7 @@ export function SiteFooter() {
         <Link href="/about">About</Link>
         <Link href="/feed.xml">RSS</Link>
       </nav>
+      <p className="site-footer-copyright">© DBGI 2026</p>
     </footer>
   );
 }
