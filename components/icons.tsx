@@ -155,32 +155,3 @@ export function PlayIcon({ className }: IconProps) {
     </svg>
   );
 }
-
-export function ChartIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className} aria-hidden="true">
-      <path d="M3 3v18h18" />
-      <line x1="8" y1="17" x2="8" y2="13" />
-      <line x1="13" y1="17" x2="13" y2="6" />
-      <line x1="18" y1="17" x2="18" y2="10" />
-    </svg>
-  );
-}
-
-export function MapPinIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className} aria-hidden="true">
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-}
-
-export function PencilIcon({ className }: IconProps) {
-  return (
-    <svg {...base} className={className} aria-hidden="true">
-      <path d="M17 3a2.83 2.83 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5z" />
-      <line x1="15" y1="5" x2="19" y2="9" />
-    </svg>
-  );
-}

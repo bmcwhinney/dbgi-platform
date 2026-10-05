@@ -1587,19 +1587,17 @@ button:focus-visible {
 }
 
 .fw-tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: var(--fieldwork-wash);
   border: 1px solid var(--rule);
   border-radius: 2px;
-  color: var(--forest-core);
+  overflow: hidden;
 }
 
-.fw-tile-icon {
-  width: 44px;
-  height: 44px;
-  stroke-width: 1.25;
+/* The illustrations sit on white; multiply lets the tile colour show through. */
+.fw-cell .fw-tile img {
+  object-fit: contain;
+  padding: 2px;
+  mix-blend-mode: multiply;
 }
 
 .fw-badge {
@@ -1620,14 +1618,13 @@ button:focus-visible {
 @media (max-width: 768px) {
   .fw-cell .fw-tile {
     aspect-ratio: auto;
-    width: 56px;
-    height: 56px;
+    width: 96px;
+    height: 96px;
     margin-bottom: 16px;
   }
 
-  .fw-tile-icon {
-    width: 26px;
-    height: 26px;
+  .fw-cell .fw-tile img {
+    padding: 4px;
   }
 }
 
