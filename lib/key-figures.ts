@@ -4,7 +4,7 @@ export const KEY_FIGURES_SLUG = "dominica-in-numbers";
 
 export const KEY_FIGURES = [
   { value: "4.5%", label: "Economic growth, 2025" },
-  { value: "103%", label: "Public debt to GDP, 2025" },
+  { value: "103%", label: "Public debt to GDP, 2025/26 estimate" },
   { value: "496,635", label: "Visitor arrivals, 2025" },
   { value: "43%", label: "Power from geothermal, June 2026" },
 ] as const;
