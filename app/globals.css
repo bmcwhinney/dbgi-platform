@@ -452,13 +452,20 @@ a.eyebrow:hover {
   flex-direction: column;
 }
 
+/* A hairline centred in whatever space is left between the story and the Viewpoint */
+.mid-divider {
+  flex: 1 1 auto;
+  min-height: 64px;
+  background: linear-gradient(var(--rule), var(--rule)) center / 100% 1px no-repeat;
+}
+
 .mid-col .opinion-box {
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .mid-story-block {
   padding: 16px;
-  margin: -16px -16px 16px;
+  margin: -16px;
   border-radius: 4px;
 }
 

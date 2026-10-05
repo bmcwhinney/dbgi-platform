@@ -21,6 +21,7 @@ export default function HomePage() {
 
         <article className="mid-col">
           {mid && <MidCard article={mid} />}
+          {mid && viewpoint && <div className="mid-divider" aria-hidden="true" />}
           {viewpoint && <OpinionBox viewpoint={viewpoint} />}
         </article>
 
