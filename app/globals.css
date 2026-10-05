@@ -27,6 +27,9 @@
   --fieldwork-sage: #9BBA87;
   --fieldwork-wash: #F0F4EC;
 
+  /* Light coral ground for the newsletter block */
+  --coral-wash: #FCE3DA;
+
   /* Interactive States */
   --hover-tint: #FFF5F2;
 
@@ -977,6 +980,104 @@ a.eyebrow:hover {
 }
 
 /* Footer */
+/* Newsletter block, above the footer on every page */
+.newsletter-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  align-items: center;
+  gap: 48px;
+  padding: 48px 64px;
+  background: var(--coral-wash);
+  border-top: 1px solid var(--rule);
+}
+
+.newsletter-art {
+  justify-self: center;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.newsletter-heading {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.newsletter-text {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 520px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--paper-refined);
+  border: 1px solid rgba(6, 18, 11, 0.25);
+  border-radius: 2px;
+}
+
+.newsletter-form input:focus {
+  outline: 2px solid var(--canopy-black);
+  outline-offset: 1px;
+}
+
+.newsletter-note {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+a.subscribe-btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .newsletter-block {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 36px 16px;
+  }
+
+  .newsletter-art {
+    justify-self: start;
+    max-width: 120px;
+  }
+
+  .newsletter-heading {
+    font-size: 1.5rem;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+}
+
 .site-footer {
   background: var(--forest-core);
   color: var(--paper-refined);

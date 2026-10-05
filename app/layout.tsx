@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Newsreader, Public_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { NewsletterBlock } from "@/components/NewsletterBlock";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="dbgi-wrap">
           <SiteHeader />
           <div id="main-content">{children}</div>
+          <NewsletterBlock />
           <SiteFooter />
         </div>
         <OrganizationJsonLd />

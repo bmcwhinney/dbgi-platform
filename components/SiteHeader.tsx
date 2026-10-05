@@ -84,7 +84,9 @@ export function SiteHeader() {
             <SearchIcon />
           </Link>
           <button className="login-text">Log in</button>
-          <button className="subscribe-btn">Subscribe</button>
+          <a href="#newsletter" className="subscribe-btn">
+            Subscribe
+          </a>
         </div>
       </header>
 
