@@ -11,7 +11,8 @@ export function OpinionBox({ viewpoint }: { viewpoint: Viewpoint }) {
     <Link href={href} className="opinion-box">
       <div className="opinion-label">Viewpoint</div>
       <div className="opinion-avatar">
-        <Image src={viewpoint.image} alt={viewpoint.name} width={64} height={64} />
+        {/* Requested well above its 64px display size so it stays sharp on dense screens and when zoomed */}
+        <Image src={viewpoint.image} alt={viewpoint.name} width={320} height={320} />
       </div>
       <div className="opinion-name">{viewpoint.name}</div>
       <div className="opinion-role">{viewpoint.role}</div>
