@@ -79,7 +79,7 @@ export default function FieldworkPage() {
           />
         </div>
         <div className="fw-concept-panel">
-          <div className="fw-kicker">Concept 01 &middot; In development</div>
+          <div className="fw-kicker">Concept 01 &middot; Still in the works</div>
           <h2 className="fw-concept-title serif-text">Morne</h2>
           <p className="spec-text">A premium still water from Dominica.</p>
           <span className="fw-link">View the concept</span>
