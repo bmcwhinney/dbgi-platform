@@ -24,7 +24,6 @@ export function FieldworkFeature() {
 
         {FIELDWORK_SERVICES.map((service) => (
           <Link key={service.name} href="/fieldwork" className="bottom-col card-link-target fw-cell">
-            <span className="fw-kicker">Service</span>
             <h3 className="bottom-headline serif-text">{service.name}</h3>
             <p className="bottom-snip">{service.question}</p>
           </Link>
