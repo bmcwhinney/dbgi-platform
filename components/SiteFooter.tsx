@@ -19,7 +19,6 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     title: "Fieldwork",
     links: [
       { label: "Fieldwork Dominica", href: "/fieldwork" },
-      { label: "Morne", href: "/fieldwork/concepts/morne" },
       { label: "Start a conversation", href: "/fieldwork#enquire" },
     ],
   },
