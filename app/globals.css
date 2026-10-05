@@ -439,9 +439,26 @@ a.eyebrow:hover {
   letter-spacing: 0.04em;
 }
 
+.mid-standfirst {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+/* The second story sits at the top of its column and the Viewpoint at the foot, so the columns end level */
+.mid-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mid-col .opinion-box {
+  margin-top: auto;
+}
+
 .mid-story-block {
   padding: 16px;
-  margin: -16px;
+  margin: -16px -16px 16px;
   border-radius: 4px;
 }
 

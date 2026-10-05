@@ -59,6 +59,7 @@ export function MidCard({ article }: { article: Article }) {
           {article.title}
         </Link>
       </h2>
+      <p className="mid-standfirst">{article.standfirst}</p>
       <div className="read-meta">
         <ClockIcon />
         <span>{article.readTime} read</span>
