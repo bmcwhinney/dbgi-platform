@@ -62,9 +62,19 @@ export interface HomepageLayout {
   bottom: Article[];
 }
 
+// Masthead and brand graphics that some articles borrow as a stand-in hero image.
+const BRAND_ART = new Set([
+  "/images/reporting-from-portsmouth.png",
+  "/images/reporting-from-roseau.png",
+  "/images/founder-dispatch-parrot.png",
+  "/images/dbgi-share.png",
+]);
+
 /**
- * Featured articles are pinned to the lead/mid slots ahead of recency;
- * everything else falls back to newest-first.
+ * Featured articles are pinned to the lead/mid slots ahead of recency.
+ * The bottom row is image-led: it takes the newest remaining articles that have
+ * artwork of their own (not brand art, not an image another card already shows).
+ * The side list takes the newest of whatever is left.
  */
 export function getHomepageLayout(): HomepageLayout {
   const sorted = loadArticles();
@@ -75,11 +85,21 @@ export function getHomepageLayout(): HomepageLayout {
   const mid = afterLead.find((a) => a.featured) ?? afterLead[0];
   const rest = afterLead.filter((a) => a.slug !== mid?.slug);
 
+  const shown = new Set([lead?.heroImage, mid?.heroImage]);
+  const bottom: Article[] = [];
+  for (const article of rest) {
+    if (bottom.length === 4) break;
+    const image = article.heroImage;
+    if (!image || BRAND_ART.has(image) || shown.has(image)) continue;
+    shown.add(image);
+    bottom.push(article);
+  }
+
   return {
     lead,
     mid,
-    side: rest.slice(0, 4),
-    bottom: rest.slice(4, 8),
+    side: rest.filter((a) => !bottom.includes(a)).slice(0, 4),
+    bottom,
   };
 }
 

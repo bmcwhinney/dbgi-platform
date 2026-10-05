@@ -74,7 +74,7 @@ Put images in `public/images/`. Reference them from frontmatter/body as `/images
 
 An article is written once and appears wherever it belongs: the homepage, its format series in the Journal, and its sector page. The label on cards is the sector (or the format when there is no sector; opinion is always labelled Opinion).
 
-The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. Below the main grid the page is built from section rows (`components/SectionHeader.tsx`: thick rule, serif caps title, link on the right), first the Journal, then Fieldwork.
+The homepage takes featured articles for the lead and mid slots. The "Latest from the Journal" row is image-led: it shows up to four of the newest remaining articles that have artwork of their own (brand graphics and images already on the page do not count), and "Also this week" lists the newest of the rest. Give a story its own `heroImage` and it joins the row. Below the main grid the page is built from section rows (`components/SectionHeader.tsx`: thick rule, serif caps title, link on the right), first the Journal, then Fieldwork.
 
 ## Publishing a video article
 

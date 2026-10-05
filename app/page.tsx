@@ -33,12 +33,16 @@ export default function HomePage() {
 
       <SectorStrip />
 
-      <SectionHeader title="Latest from the Journal" href="/journal" />
-      <div className="bottom-grid">
-        {bottom.map((article) => (
-          <BottomCard key={article.slug} article={article} />
-        ))}
-      </div>
+      {bottom.length > 0 && (
+        <>
+          <SectionHeader title="Latest from the Journal" href="/journal" />
+          <div className={`bottom-grid bottom-grid-${bottom.length}`}>
+            {bottom.map((article) => (
+              <BottomCard key={article.slug} article={article} />
+            ))}
+          </div>
+        </>
+      )}
 
       <FieldworkFeature />
     </>

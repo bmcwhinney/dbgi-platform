@@ -92,6 +92,19 @@ export function SideItem({ article }: { article: Article }) {
 export function BottomCard({ article }: { article: Article }) {
   return (
     <article className="bottom-col card-link-target">
+      {article.heroImage && (
+        <div className="bottom-image">
+          {article.video && <PlayBadge />}
+          <Image
+            src={article.heroImage}
+            alt={article.heroImageAlt ?? ""}
+            width={960}
+            height={640}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      )}
+      <span className="eyebrow">{articleEyebrow(article)}</span>
       <h3 className="bottom-headline serif-text">
         <Link href={articleHref(article)} className="stretched-link">
           {article.title}
