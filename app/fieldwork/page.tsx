@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { FIELDWORK_SERVICES } from "@/lib/fieldwork";
 
 export const metadata: Metadata = {
   title: "Fieldwork Dominica",
@@ -10,55 +11,31 @@ export const metadata: Metadata = {
   alternates: { canonical: "/fieldwork" },
 };
 
-const SERVICES = [
-  {
-    name: "Commercial research",
-    question: "Should we investigate this sector, product or market further?",
-    deliverable:
-      "An agreed research brief, sourced findings, interviews with stakeholders or buyers, the assumptions and constraints, and a recommendation for the next decision.",
-  },
-  {
-    name: "Site and partner assessment",
-    question: "Which locations or counterparties merit detailed diligence?",
-    deliverable:
-      "A criteria-based shortlist, the status of each contact, observations on access and infrastructure, a comparison of the options and the specialist diligence still required.",
-  },
-  {
-    name: "Brand and venture development",
-    question: "What should we create, for whom and through which route to market?",
-    deliverable:
-      "A defined proposition, positioning, concept design, a potential production route and an agreed validation plan, shaped to the commission.",
-  },
-];
-
 export default function FieldworkPage() {
   return (
     <>
-      <header className="fw-hero">
+      <header className="listing-header">
         <Image
-          className="fw-hero-wordmark"
+          className="fw-page-wordmark"
           src="/images/fieldwork-wordmark.png"
           alt="Fieldwork Dominica"
           width={1100}
           height={385}
           priority
         />
-        <h1 className="fw-hero-title">
-          Research, advisory and venture development, grounded in Dominica.
+        <h1 className="listing-title serif-text">
+          Research, advisory and venture development
         </h1>
-        <p className="fw-hero-text">
+        <p className="listing-standfirst">
           Fieldwork is the advisory and venture development arm of DBGI. We help businesses and
           project sponsors decide what to build on the island, where, and with whom.
         </p>
-        <a href="#enquire" className="fw-button">
-          Start a conversation
-        </a>
       </header>
 
       <section className="spec-section">
         <div className="spec-label">What we do</div>
         <div className="fw-services">
-          {SERVICES.map((service, index) => (
+          {FIELDWORK_SERVICES.map((service, index) => (
             <div key={service.name} className="fw-service">
               <div className="fw-kicker">0{index + 1}</div>
               <h2 className="fw-service-name serif-text">{service.name}</h2>

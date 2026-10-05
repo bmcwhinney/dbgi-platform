@@ -11,7 +11,7 @@ DBGI (Dominica Business Growth & Innovation) is a business publication and intel
 | Opportunities | `/opportunities` | The evidence standard and publication stages for opportunity briefs. No brief is published yet. |
 | Fieldwork | `/fieldwork`, `/fieldwork/concepts/morne` | The advisory and venture arm: services, how it works, concepts, enquiry form. |
 
-Fieldwork is presented as a sister studio: its own brush wordmark and sage accent on DBGI's forest surface, with a band on the homepage. No disclaimer labels; the separation from the newsroom is stated once, on About. Formats and sectors are defined in `types/content.ts`. Old section URLs (`/news/...`, `/founders/...`, `/sector/...`) redirect from `next.config.mjs`.
+Fieldwork gets one row on the homepage in the same format as the editorial rows, and a page that opens like any other section page with a small brush wordmark. No banners and no disclaimer labels; the separation from the newsroom is stated once, on About. Formats and sectors are defined in `types/content.ts`. Old section URLs (`/news/...`, `/founders/...`, `/sector/...`) redirect from `next.config.mjs`.
 
 **Not wired up yet:** the Fieldwork enquiry form has no backend. It validates, sends nothing, and tells the visitor so (`components/EnquiryForm.tsx`). There is no newsletter sign-up.
 
@@ -74,7 +74,7 @@ Put images in `public/images/`. Reference them from frontmatter/body as `/images
 
 An article is written once and appears wherever it belongs: the homepage, its format series in the Journal, and its sector page. The label on cards is the sector (or the format when there is no sector; opinion is always labelled Opinion).
 
-The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. A text-only third story sits under the mid story, and the Fieldwork band follows the sector strip.
+The homepage takes featured articles for the lead and mid slots, then newest-first for "Also this week" and the bottom grid. Below the main grid the page is built from section rows (`components/SectionHeader.tsx`: thick rule, serif caps title, link on the right), first the Journal, then Fieldwork.
 
 ## Publishing a video article
 

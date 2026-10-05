@@ -582,10 +582,45 @@ a.eyebrow:hover {
   color: #ffffff;
 }
 
+/* Section header: thick rule, serif caps title, link on the right */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 32px 0;
+  padding: 12px 0;
+  border-top: 4px solid var(--canopy-black);
+}
+
+.section-title {
+  font-family: var(--font-newsreader, 'Newsreader'), 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.section-more {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.section-more:hover {
+  color: var(--volcanic-coral);
+}
+
 /* Modernized Grid Footer Links */
 .bottom-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background: var(--rule);
   gap: 1px;
 }
@@ -894,6 +929,7 @@ a.eyebrow:hover {
   .main-grid { grid-template-columns: 1fr 1fr; }
   .side-col { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px; }
   .side-label { grid-column: span 2; margin-bottom: 0; }
+  .bottom-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1484,8 +1520,7 @@ button:focus-visible {
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.fw-button:hover,
-.fw-band-panel:hover .fw-button {
+.fw-button:hover {
   background: var(--fieldwork-sage);
   color: var(--forest-core);
 }
@@ -1513,50 +1548,16 @@ button:focus-visible {
   border-bottom: 2px solid var(--fieldwork-sage);
 }
 
-/* Homepage band */
-.fw-band {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  background: var(--forest-core);
-}
-
-.fw-band-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  padding: 48px 40px;
-  text-decoration: none;
-}
-
-.fw-band-wordmark {
-  width: 230px;
-  height: auto;
-}
-
-.fw-band-title {
-  font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: var(--paper-refined);
-}
-
-.fw-band-panel .fw-kicker {
-  color: var(--fieldwork-sage);
-}
-
-.fw-band-concept {
-  position: relative;
+.fw-cell {
   display: block;
-  min-height: 360px;
-  overflow: hidden;
   text-decoration: none;
 }
 
-.fw-band-concept img,
+.fw-cell .fw-kicker {
+  display: block;
+  margin-bottom: 12px;
+}
+
 .fw-concept-image img {
   position: absolute;
   inset: 0;
@@ -1566,58 +1567,16 @@ button:focus-visible {
   transition: transform var(--transition-smooth);
 }
 
-.fw-band-concept:hover img,
 .fw-concept:hover .fw-concept-image img {
   transform: scale(1.03);
 }
 
-.fw-band-caption {
-  position: absolute;
-  left: 28px;
-  bottom: 22px;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--forest-core);
-}
-
-.fw-band-caption .fw-kicker {
-  font-family: var(--font-public-sans, 'Public Sans'), sans-serif;
-}
-
 /* Fieldwork page */
-.fw-hero {
-  padding: 64px 40px 56px;
-  background: var(--forest-core);
-}
-
-.fw-hero-wordmark {
+.fw-page-wordmark {
   display: block;
-  width: min(440px, 84%);
+  width: 220px;
   height: auto;
-  margin-bottom: 32px;
-}
-
-.fw-hero-title {
-  max-width: 46rem;
   margin-bottom: 20px;
-  font-family: var(--font-newsreader, 'Newsreader'), serif;
-  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--paper-refined);
-}
-
-.fw-hero-text {
-  max-width: 40rem;
-  margin-bottom: 28px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #C9D3CB;
 }
 
 .fw-services {
@@ -1842,11 +1801,14 @@ button:focus-visible {
     padding: 28px 16px;
   }
 
-  .fw-hero {
-    padding: 40px 16px;
+  .section-header {
+    margin: 28px 16px 0;
   }
 
-  .fw-band-panel,
+  .section-title {
+    font-size: 1.25rem;
+  }
+
   .fw-concept-panel {
     padding: 36px 16px;
   }
@@ -1860,7 +1822,6 @@ button:focus-visible {
   .enquiry-grid,
   .two-col,
   .fw-services,
-  .fw-band,
   .fw-concept {
     grid-template-columns: 1fr;
   }
@@ -1874,7 +1835,6 @@ button:focus-visible {
     gap: 20px;
   }
 
-  .fw-band-concept,
   .fw-concept-image {
     min-height: 260px;
   }

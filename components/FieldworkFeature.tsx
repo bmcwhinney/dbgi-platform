@@ -1,39 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FIELDWORK_SERVICES } from "@/lib/fieldwork";
+import { SectionHeader } from "./SectionHeader";
 
 export function FieldworkFeature() {
   return (
-    <section className="fw-band" aria-label="Fieldwork Dominica">
-      <Link href="/fieldwork" className="fw-band-panel">
-        <Image
-          className="fw-band-wordmark"
-          src="/images/fieldwork-wordmark.png"
-          alt="Fieldwork Dominica"
-          width={1100}
-          height={385}
-        />
-        <p className="fw-band-title">
-          Research, advisory and venture development, grounded in Dominica.
-        </p>
-        <p className="fw-kicker">
-          Commercial research &middot; Site and partner assessment &middot; Brand and venture
-          development
-        </p>
-        <span className="fw-button">Explore Fieldwork</span>
-      </Link>
+    <section aria-label="Fieldwork Dominica">
+      <SectionHeader title="From Fieldwork" href="/fieldwork" more="About Fieldwork" />
+      <div className="bottom-grid">
+        <Link href="/fieldwork/concepts/morne" className="bottom-col card-link-target fw-cell">
+          <div className="mid-image-placeholder">
+            <Image
+              src="/images/morne-concept.jpg"
+              alt="A clear glass bottle labelled Morne, Dominica, still water"
+              width={1536}
+              height={1024}
+            />
+          </div>
+          <span className="fw-kicker">Concept</span>
+          <h3 className="bottom-headline serif-text">Morne</h3>
+          <p className="bottom-snip">A premium still water from Dominica, in development.</p>
+        </Link>
 
-      <Link href="/fieldwork/concepts/morne" className="fw-band-concept">
-        <Image
-          src="/images/morne-concept.jpg"
-          alt="A clear glass bottle labelled Morne, Dominica, still water"
-          width={1536}
-          height={1024}
-        />
-        <span className="fw-band-caption">
-          <span className="fw-kicker">Concept 01</span>
-          Morne
-        </span>
-      </Link>
+        {FIELDWORK_SERVICES.map((service) => (
+          <Link key={service.name} href="/fieldwork" className="bottom-col card-link-target fw-cell">
+            <span className="fw-kicker">Service</span>
+            <h3 className="bottom-headline serif-text">{service.name}</h3>
+            <p className="bottom-snip">{service.question}</p>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }

@@ -79,7 +79,7 @@ export function getHomepageLayout(): HomepageLayout {
     lead,
     mid,
     side: rest.slice(0, 4),
-    bottom: rest.slice(4, 7),
+    bottom: rest.slice(4, 8),
   };
 }
 

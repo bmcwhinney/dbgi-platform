@@ -4,6 +4,7 @@ import { FieldworkFeature } from "@/components/FieldworkFeature";
 import { OpinionBox } from "@/components/OpinionBox";
 import { getLatestViewpoint } from "@/lib/viewpoints";
 import { SectorStrip } from "@/components/SectorStrip";
+import { SectionHeader } from "@/components/SectionHeader";
 import { WebsiteJsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
@@ -32,13 +33,14 @@ export default function HomePage() {
 
       <SectorStrip />
 
-      <FieldworkFeature />
-
-      <footer className="bottom-grid">
+      <SectionHeader title="Latest from the Journal" href="/journal" />
+      <div className="bottom-grid">
         {bottom.map((article) => (
           <BottomCard key={article.slug} article={article} />
         ))}
-      </footer>
+      </div>
+
+      <FieldworkFeature />
     </>
   );
 }
