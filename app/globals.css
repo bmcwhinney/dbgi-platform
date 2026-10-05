@@ -1269,11 +1269,6 @@ a.eyebrow:hover {
     padding-right: 16px;
   }
 
-  .site-footer {
-    padding: 32px 16px;
-    justify-content: center;
-    text-align: center;
-  }
 }
 
 /* Accessibility: skip link + focus states */
