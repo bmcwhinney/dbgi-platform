@@ -980,39 +980,82 @@ a.eyebrow:hover {
 .site-footer {
   background: var(--forest-core);
   color: var(--paper-refined);
-  padding: 40px 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
+  padding: 56px 32px 28px;
+  text-align: left;
 }
 
-.site-footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+.site-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 32px;
 }
 
-.site-footer-links a {
-  font-size: 0.78rem;
-  font-weight: 700;
+.site-footer-title {
+  font-family: var(--font-public-sans, 'Public Sans'), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fieldwork-sage);
+  margin-bottom: 16px;
+}
+
+.site-footer ul {
+  list-style: none;
+}
+
+.site-footer-columns li + li {
+  margin-top: 10px;
+}
+
+.site-footer a {
   color: var(--paper-refined);
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
 }
 
-.site-footer-links a:hover {
+.site-footer a:hover {
   color: var(--volcanic-coral);
 }
 
-.site-footer-copyright {
-  flex-basis: 100%;
-  text-align: center;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+.site-footer-columns a {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.site-footer-base {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(252, 251, 250, 0.16);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
   color: rgba(252, 251, 250, 0.7);
+}
+
+.site-footer-small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 16px 24px;
+  }
+
+  .site-footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+  }
+
+  .site-footer-base {
+    margin-top: 36px;
+  }
 }
 
 /* Responsive Architectures */
