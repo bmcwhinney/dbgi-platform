@@ -4,6 +4,7 @@ import { FieldworkFeature } from "@/components/FieldworkFeature";
 import { OpinionBox } from "@/components/OpinionBox";
 import { getLatestViewpoint } from "@/lib/viewpoints";
 import { SectorStrip } from "@/components/SectorStrip";
+import { KeyFigures } from "@/components/KeyFigures";
 import { SectionHeader } from "@/components/SectionHeader";
 import { WebsiteJsonLd } from "@/components/JsonLd";
 
@@ -28,6 +29,7 @@ export default function HomePage() {
           {side.map((article) => (
             <SideItem key={article.slug} article={article} />
           ))}
+          <KeyFigures />
         </aside>
       </main>
 
