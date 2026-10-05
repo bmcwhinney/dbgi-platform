@@ -49,8 +49,8 @@ Add a new `.mdx` file to `content/articles/`. The filename (minus `.mdx`) become
 ---
 title: "Your headline here"
 format: "news"            # news | analysis | profile | briefing | opinion
-sector: "energy"          # optional primary sector: food-and-agriculture | natural-ingredients |
-                          # tourism-and-hospitality | energy | infrastructure-and-connectivity
+sector: "energy"          # optional primary sector: food-and-agriculture | tourism-and-hospitality |
+                          # energy | infrastructure-and-connectivity | finance-and-investment
 standfirst: "One or two sentence summary shown on cards and at the top of the article."
 author: "Your name"
 authorRole: "Optional role/title"

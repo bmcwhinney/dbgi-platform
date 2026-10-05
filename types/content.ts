@@ -20,17 +20,10 @@ export const SECTORS = [
   {
     slug: "food-and-agriculture",
     label: "Food and agriculture",
-    scope: "Crops, fisheries and food products, from fine cocoa to sea moss.",
-    questions:
-      "Who buys, what quality is required, where processing adds value and whether production can meet demand.",
-  },
-  {
-    slug: "natural-ingredients",
-    label: "Natural ingredients",
     scope:
-      "Plant-derived oils and extracts such as bay oil. Cannabis is covered as a reporting topic, not as an assumed investable market.",
+      "Crops, fisheries and the products made from them, from fine cocoa and sea moss to rum and bay oil.",
     questions:
-      "Who produces and buys, what processing is possible and which market or policy conditions matter.",
+      "Who buys, what quality is required, where processing adds value, whether production can meet demand and which policy conditions matter.",
   },
   {
     slug: "tourism-and-hospitality",
@@ -52,6 +45,14 @@ export const SECTORS = [
     scope: "Airports, transport links and the projects that change access to the island.",
     questions:
       "What is funded, being built or operating, and what changes for access, logistics and business activity.",
+  },
+  {
+    slug: "finance-and-investment",
+    label: "Finance and investment",
+    scope:
+      "Banks and credit unions, the public finances and the capital coming into the island, including citizenship by investment.",
+    questions:
+      "Who is lending and investing, on what terms, what businesses can actually access and what the public accounts show.",
   },
 ] as const;
 

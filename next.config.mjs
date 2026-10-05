@@ -34,6 +34,12 @@ const nextConfig = {
         destination,
         permanent: true,
       })),
+      // Natural ingredients was folded into Food and agriculture.
+      {
+        source: "/sectors/natural-ingredients",
+        destination: "/sectors/food-and-agriculture",
+        permanent: true,
+      },
       { source: "/fieldwork/concepts", destination: "/fieldwork", permanent: true },
     ];
   },

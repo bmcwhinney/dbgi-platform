@@ -155,3 +155,16 @@ export function PlayIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function BankIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} aria-hidden="true">
+      <path d="M12 3 3 8h18z" />
+      <line x1="5.5" y1="11" x2="5.5" y2="17" />
+      <line x1="10" y1="11" x2="10" y2="17" />
+      <line x1="14" y1="11" x2="14" y2="17" />
+      <line x1="18.5" y1="11" x2="18.5" y2="17" />
+      <line x1="3" y1="20.5" x2="21" y2="20.5" />
+    </svg>
+  );
+}

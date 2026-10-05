@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { articleEyebrow, type Article } from "@/types/content";
 import { articleHref } from "@/lib/urls";
-import { ClockIcon, PlayIcon, StoreIcon, BulbIcon, LeafIcon, RocketIcon } from "./icons";
+import { ClockIcon, PlayIcon, StoreIcon, BulbIcon, LeafIcon, RocketIcon, BankIcon } from "./icons";
 
 function PlayBadge() {
   return (
@@ -70,8 +70,8 @@ export function MidCard({ article }: { article: Article }) {
 const SECTOR_ICONS: Record<string, typeof StoreIcon> = {
   energy: BulbIcon,
   "food-and-agriculture": LeafIcon,
-  "natural-ingredients": LeafIcon,
   "infrastructure-and-connectivity": RocketIcon,
+  "finance-and-investment": BankIcon,
 };
 
 export function SideItem({ article }: { article: Article }) {
