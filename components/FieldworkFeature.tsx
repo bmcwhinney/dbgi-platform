@@ -16,7 +16,7 @@ export function FieldworkFeature() {
       <div className="bottom-grid">
         <Link href="/fieldwork/concepts/morne" className="bottom-col card-link-target fw-cell">
           <div className="mid-image-placeholder fw-visual">
-            <span className="fw-badge">Still in the works</span>
+            <span className="fw-badge">Concept</span>
             <Image
               src="/images/morne-concept.jpg"
               alt="A clear glass bottle labelled Morne, Dominica, still water"
@@ -26,7 +26,7 @@ export function FieldworkFeature() {
             />
           </div>
           <h3 className="bottom-headline serif-text">Morne</h3>
-          <p className="bottom-snip">A premium still water from Dominica.</p>
+          <p className="bottom-snip">A premium still water from Dominica, in development.</p>
         </Link>
 
         {FIELDWORK_SERVICES.map((service) => (
